@@ -3,7 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وکیل امیرحسین بای | وکیل شما در گلستان</title>
+    <title>وکیل امیرحسین بای | وکیل پایه یک دادگستری در گلستان | مشاوره حقوقی آنلاین</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="وکیل امیرحسین بای، وکیل پایه یک دادگستری در استان گلستان. ارائه مشاوره حقوقی تخصصی، وکالت در دعاوی ملکی، خانواده، کیفری، ثبتی و تنظیم قراردادها. با هوش مصنوعی، حقوق خود را بهتر بشناسید.">
+    <meta name="keywords" content="وکیل، وکیل گلستان، وکیل گرگان، وکیل پایه یک، مشاوره حقوقی، دعاوی ملکی، دعاوی خانواده، دعاوی کیفری، تنظیم قرارداد، حقوقی، کیفری، ثبتی، وکیل آنلاین، مشاوره حقوقی رایگان، مهلت‌های قانونی، دیه، حقوق کارگر، زیان تاخیر تادیه، هوش مصنوعی حقوقی">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourwebsite.com/"> <!-- Replace with your actual domain -->
+
+    <!-- Open Graph / Facebook / Social Media Tags -->
+    <meta property="og:title" content="وکیل امیرحسین بای | وکیل پایه یک دادگستری در گلستان | مشاوره حقوقی آنلاین">
+    <meta property="og:description" content="وکیل امیرحسین بای، وکیل پایه یک دادگستری در استان گلستان. ارائه مشاوره حقوقی تخصصی، وکالت در دعاوی ملکی، خانواده، کیفری، ثبتی و تنظیم قراردادها. با هوش مصنوعی، حقوق خود را بهتر بشناسید.">
+    <meta property="og:image" content="https://ia601801.us.archive.org/10/items/gemini-generated-image-c-30aszc-30aszc-30a/Gemini_Generated_Image_c30aszc30aszc30a.png"> <!-- Replace with a high-quality image URL -->
+    <meta property="og:url" content="https://yourwebsite.com/"> <!-- Replace with your actual domain -->
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="وکیل امیرحسین بای | وکیل پایه یک دادگستری در گلستان | مشاوره حقوقی آنلاین">
+    <meta name="twitter:description" content="وکیل امیرحسین بای، وکیل پایه یک دادگستری در استان گلستان. ارائه مشاوره حقوقی تخصصی، وکالت در دعاوی ملکی، خانواده، کیفری، ثبتی و تنظیم قراردادها. با هوش مصنوعی، حقوق خود را بهتر بشناسید.">
+    <meta name="twitter:image" content="https://ia601801.us.archive.org/10/items/gemini-generated-image-c-30aszc-30aszc-30a/Gemini_Generated_Image_c30aszc30aszc30a.png"> <!-- Replace with a high-quality image URL -->
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "وکیل امیرحسین بای",
+      "description": "وکیل پایه یک دادگستری در استان گلستان. ارائه مشاوره حقوقی تخصصی، وکالت در دعاوی ملکی، خانواده، کیفری، ثبتی و تنظیم قراردادها. با هوش مصنوعی، حقوق خود را بهتر بشناسید.",
+      "url": "https://yourwebsite.com/", <!-- Replace with your actual domain -->
+      "image": "https://placehold.co/300x300/263238/d4af37?text=عکس+وکیل",
+      "telephone": "+98-912-XXXXXXX", <!-- Replace with actual phone number -->
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "خیابان عدالت، کوچه سوم", <!-- Replace with actual address -->
+        "addressLocality": "گرگان",
+        "addressRegion": "گلستان",
+        "postalCode": "4917712345", <!-- Replace with actual postal code -->
+        "addressCountry": "IR"
+      },
+      "openingHours": "Mo-Fr 09:00-17:00",
+      "priceRange": "$$$",
+      "hasMap": "https://maps.google.com/?q=گرگان", <!-- Replace with actual map link -->
+      "sameAs": [
+        "https://www.linkedin.com/in/amirhosseinbay", <!-- Replace with actual LinkedIn -->
+        "https://www.instagram.com/amirhosseinbay_lawyer", <!-- Replace with actual Instagram -->
+        "https://twitter.com/amirhosseinbay" <!-- Replace with actual Twitter -->
+      ]
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome برای آیکون‌ها -->
@@ -12,6 +61,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet" type="text/css">
+    <!-- Jalaali-js for Persian Date calculations -->
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.min.js"></script>
 
     <style>
         /* تنظیمات سفارشی Tailwind و فونت‌های فارسی */
@@ -73,18 +124,142 @@
         .animate-subtle-zoom {
             animation: subtle-zoom 10s ease-in-out infinite alternate;
         }
+
+        /* Responsive adjustments for header */
+        @media (max-width: 1023px) { /* For screens smaller than large (lg) breakpoint */
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-container nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+                display: none; /* Hidden by default for mobile, will be toggled by JS */
+            }
+            .header-container nav ul.open {
+                display: flex;
+            }
+            .header-container nav ul li {
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+            .header-container nav ul li a {
+                padding: 0.5rem 0;
+                display: block;
+            }
+            .menu-toggle {
+                display: block;
+                font-size: 2.5rem; /* Larger icon for touch */
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                transition: background-color 0.3s ease;
+            }
+            .menu-toggle:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            .header-container .logo {
+                font-size: 2.5rem; /* Adjust logo size for mobile */
+                margin-bottom: 1rem; /* Space between logo and toggler */
+            }
+        }
+
+        /* Styles for modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            max-height: 90vh; /* Limit height for scrollability */
+            overflow-y: auto; /* Enable scrolling within modal content */
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Chat styles for AI Lawsuit Guide */
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f9f9f9;
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            align-self: flex-start;
+            background-color: #e0f7fa; /* Light cyan */
+            color: #263238;
+            border-bottom-right-radius: 0;
+        }
+        .ai-message {
+            align-self: flex-end;
+            background-color: #bbdefb; /* Light blue */
+            color: #263238;
+            border-bottom-left-radius: 0;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header & Navigation Bar -->
     <header class="bg-gray-900 text-white py-5 shadow-2xl sticky top-0 z-50">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-4xl font-extrabold text-yellow-400 hover:text-yellow-300 transition-colors duration-300 tracking-wide">
+        <div class="container mx-auto px-6 flex justify-between items-center header-container">
+            <a href="#home" class="text-4xl font-extrabold text-yellow-400 hover:text-yellow-300 transition-colors duration-300 tracking-wide logo">
                 امیرحسین بای
             </a>
-            <nav>
-                <ul class="flex space-x-10 text-xl">
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle lg:hidden text-yellow-400" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul class="flex space-x-10 text-xl lg:flex">
                     <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
                         صفحه اصلی
                         <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
@@ -105,8 +280,8 @@
                         مراحل کار
                         <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
                     </a></li>
-                    <li><a href="#legal-glossary" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
-                        واژه‌نامه حقوقی
+                    <li><a href="#features" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        امکانات ویژه
                         <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
                     </a></li>
                     <li><a href="#blog" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
@@ -296,31 +471,101 @@
         </div>
     </section>
 
-    <!-- Legal Glossary Section (Powered by Gemini API) -->
-    <section id="legal-glossary" class="py-24 bg-gray-50">
+    <!-- New Features Section -->
+    <section id="features" class="py-24 bg-gray-900 text-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-6xl font-extrabold text-gray-900 mb-20 leading-tight">
-                <span class="text-gradient-dark-gold">واژه‌نامه حقوقی</span>
+            <h2 class="text-6xl font-extrabold text-white mb-20 leading-tight">
+                <span class="text-gradient-dark-gold">امکانات ویژه</span>
             </h2>
-            <div class="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-xl">
-                <p class="text-xl text-gray-700 mb-8 leading-relaxed">
-                    در این بخش می‌توانید یک اصطلاح حقوقی را وارد کنید تا هوش مصنوعی Gemini توضیح ساده و قابل فهمی از آن را برای شما ارائه دهد.
-                </p>
-                <div class="mb-6">
-                    <textarea id="legalTermInput" rows="3" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg placeholder-gray-500" placeholder="مثال: مهریه، حضانت، کلاهبرداری"></textarea>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-16">
+                <!-- Feature 1: محاسبه‌گر هوشمند هزینه‌های دادرسی -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-calculator text-8xl text-blue-700 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">محاسبه‌گر هوشمند هزینه‌های دادرسی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">ابزاری برای تخمین هزینه‌های دادرسی در انواع دعاوی حقوقی، کیفری و خانواده.</p>
+                    <button id="openCostCalculator" class="btn-primary bg-blue-700 hover:bg-blue-800">شروع محاسبه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک نمونه ساده سمت کاربر است.</p>
                 </div>
-                <button id="explainTermBtn" class="btn-primary w-full md:w-auto">
-                    توضیح اصطلاح
-                </button>
-                <div id="loadingIndicator" class="mt-8 text-blue-700 text-xl font-semibold hidden">
-                    <i class="fas fa-spinner fa-spin ml-2"></i> در حال پردازش...
+                <!-- Feature 2: تولید دادخواست و شکواییه با هوش مصنوعی -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-file-alt text-8xl text-yellow-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">تولید دادخواست و شکواییه با هوش مصنوعی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">با شرح پرونده خود، پیش‌نویس اولیه دادخواست یا شکواییه را توسط هوش مصنوعی دریافت کنید.</p>
+                    <button id="openPetitionGenerator" class="btn-primary bg-yellow-600 hover:bg-yellow-700">تولید دادخواست</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت توسط هوش مصنوعی Gemini پشتیبانی می‌شود.</p>
                 </div>
-                <div id="legalTermResult" class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 text-lg leading-relaxed hidden text-right">
-                    <!-- AI generated explanation will appear here -->
+                <!-- Feature 3: راهنمای مراحل رسیدگی به پرونده‌ها -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-map-signs text-8xl text-green-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">راهنمای مراحل رسیدگی به پرونده‌ها</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">نقشه راه گام به گام برای انواع دعاوی حقوقی با تخمین زمان و مدارک لازم.</p>
+                    <button id="openCaseRoadmap" class="btn-primary bg-green-600 hover:bg-green-700">مشاهده نقشه راه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک نمونه ساده سمت کاربر است.</p>
                 </div>
-                <p class="text-sm text-gray-500 mt-6">
-                    <i class="fas fa-info-circle ml-1"></i> توضیحات ارائه شده توسط هوش مصنوعی صرفاً جهت اطلاع‌سانی عمومی است و جایگزین مشاوره حقوقی تخصصی نمی‌باشد.
-                </p>
+                <!-- Feature 4: جستجوی مواد قانونی و آرای وحدت رویه -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-book-open text-8xl text-red-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">جستجوی مواد قانونی و آرای وحدت رویه</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">موتور جستجوی سریع برای دسترسی به قوانین و آرای وحدت رویه دیوان عالی کشور.</p>
+                    <a href="https://davoudabadi.ir/" target="_blank" class="btn-primary bg-red-600 hover:bg-red-700">جستجو در قوانین (داوودآبادی)</a>
+                    <p class="text-sm text-gray-500 mt-4">این لینک به یک منبع خارجی متصل می‌شود.</p>
+                </div>
+                <!-- Feature 5: محاسبه‌گر دیه و ارش بر اساس نرخ سال جاری -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-hand-holding-usd text-8xl text-purple-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">محاسبه‌گر دیه و ارش</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">محاسبه دقیق دیه و ارش بر اساس نرخ سال جاری و انواع جراحات و آسیب‌ها.</p>
+                    <button id="openDiyyaCalculator" class="btn-primary bg-purple-600 hover:bg-purple-700">شروع محاسبه دیه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک نمونه ساده سمت کاربر است.</p>
+                </div>
+                <!-- Feature 6: تنظیم آنلاین قراردادها با هوش مصنوعی -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-file-signature text-8xl text-cyan-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">تنظیم آنلاین قراردادها با هوش مصنوعی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">با شرح قرارداد مورد نظر خود، پیش‌نویس اولیه آن را توسط هوش مصنوعی دریافت کنید.</p>
+                    <button id="openContractGenerator" class="btn-primary bg-cyan-600 hover:bg-cyan-700">تولید قرارداد</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت توسط هوش مصنوعی Gemini پشتیبانی می‌شود.</p>
+                </div>
+                <!-- Feature 7: مبدل محاسبه‌ی زمان‌های قانونی -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-calendar-alt text-8xl text-orange-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">مبدل محاسبه‌ی زمان‌های قانونی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">ابزاری برای تخمین مهلت‌های قانونی در روندهای قضایی، با در نظر گرفتن موقعیت (ایران/خارج از ایران).</p>
+                    <button id="openLegalTimeCalculator" class="btn-primary bg-orange-600 hover:bg-orange-700">شروع محاسبه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک ابزار تخمینی است و جایگزین مشاوره حقوقی نمی‌باشد.</p>
+                </div>
+                <!-- Feature 8: واژه‌نامه حقوقی (AI Powered) -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-book text-8xl text-blue-500 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">واژه‌نامه حقوقی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">توضیح ساده و قابل فهم اصطلاحات حقوقی رایج با کمک هوش مصنوعی.</p>
+                    <button id="openLegalGlossary" class="btn-primary bg-blue-500 hover:bg-blue-600">توضیح اصطلاح</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت توسط هوش مصنوعی Gemini پشتیبانی می‌شود.</p>
+                </div>
+                <!-- Feature 9: ربات راهنمای طرح دعوا (مشاور هوشمند مرحله‌به‌مرحله) -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-robot text-8xl text-purple-700 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">ربات راهنمای طرح دعوا</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">مشاور هوشمند چت‌محور برای راهنمایی اولیه در مورد امکان طرح دعوا.</p>
+                    <button id="openAiLawsuitGuide" class="btn-primary bg-purple-700 hover:bg-purple-800">شروع مشاوره</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت توسط هوش مصنوعی Gemini پشتیبانی می‌شود.</p>
+                </div>
+                <!-- Feature 10: ماشین حساب پیشرفته حقوق و مزایا -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-money-check-alt text-8xl text-teal-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">ماشین حساب پیشرفته حقوق و مزایا</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">محاسبه حقوق، اضافه‌کاری، سنوات، مرخصی و عیدی مطابق قانون کار (نمونه).</p>
+                    <button id="openSalaryCalculator" class="btn-primary bg-teal-600 hover:bg-teal-700">شروع محاسبه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک نمونه ساده سمت کاربر است.</p>
+                </div>
+                <!-- Feature 11: محاسبه‌گر زیان تأخیر تأدیه -->
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-hourglass-half text-8xl text-pink-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">محاسبه‌گر زیان تأخیر تأدیه</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">محاسبه زیان تأخیر تأدیه بر اساس مبلغ بدهی و بازه زمانی (نمونه).</p>
+                    <button id="openLatePaymentCalculator" class="btn-primary bg-pink-600 hover:bg-pink-700">شروع محاسبه</button>
+                    <p class="text-sm text-gray-500 mt-4">این قابلیت یک نمونه ساده سمت کاربر است.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -398,7 +643,7 @@
                 <li><a href="#services" class="hover:text-yellow-400 transition-colors duration-300">خدمات</a></li>
                 <li><a href="#why-us" class="hover:text-yellow-400 transition-colors duration-300">چرا ما؟</a></li>
                 <li><a href="#workflow-steps" class="hover:text-yellow-400 transition-colors duration-300">مراحل کار</a></li>
-                <li><a href="#legal-glossary" class="hover:text-yellow-400 transition-colors duration-300">واژه‌نامه حقوقی</a></li>
+                <li><a href="#features" class="hover:text-yellow-400 transition-colors duration-300">امکانات ویژه</a></li>
                 <li><a href="#blog" class="hover:text-yellow-400 transition-colors duration-300">مقالات</a></li>
                 <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300">تماس با ما</a></li>
                 <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">سوالات متداول</a></li>
@@ -411,8 +656,311 @@
             <p class="text-base mb-3">&copy; 2025 وکیل امیرحسین بای. تمامی حقوق محفوظ است.</p>
             <p class="text-base mb-3">فعالیت در استان گلستان - گرگان</p>
             <p class="text-base">طراحی و توسعه توسط Gemini با هوش مصنوعی</p>
+            <div id="currentDateTime" class="text-sm text-gray-500 mt-4"></div>
         </div>
     </footer>
+
+    <!-- Modals for Features -->
+    <!-- Cost Calculator Modal -->
+    <div id="costCalculatorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeCostCalculator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">محاسبه‌گر هوشمند هزینه‌های دادرسی</h3>
+            <p class="text-gray-700 mb-6 text-xl">این یک نمونه ساده برای نمایش عملکرد است. برای محاسبه دقیق، نیاز به قوانین و تعرفه‌های به‌روز قوه قضائیه و پیاده‌سازی سمت سرور می‌باشد.</p>
+            <div class="mb-4">
+                <label for="caseType" class="block text-lg font-medium text-gray-700 mb-2">نوع دعوا:</label>
+                <select id="caseType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                    <option value="civil">حقوقی</option>
+                    <option value="criminal">کیفری</option>
+                    <option value="family">خانواده</option>
+                    <option value="appeal">تجدیدنظر</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="claimAmount" class="block text-lg font-medium text-gray-700 mb-2">مبلغ خواسته (ریال):</label>
+                <input type="number" id="claimAmount" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg" value="10000000">
+            </div>
+            <button id="calculateCost" class="btn-primary w-full mt-6">محاسبه</button>
+            <div id="costResult" class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 text-lg hidden">
+                <p>هزینه دادرسی تقریبی: <span class="font-bold text-blue-700" id="calculatedAmount"></span> ریال</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Petition Generator Modal (AI Powered) -->
+    <div id="petitionGeneratorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closePetitionGenerator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">تولید دادخواست و شکواییه با هوش مصنوعی</h3>
+            <p class="text-gray-700 mb-6 text-xl">شرح دقیق پرونده (نوع دعوا، طرفین، موضوع، خواسته، جزئیات واقعه) را وارد کنید تا هوش مصنوعی پیش‌نویس اولیه را برای شما تولید کند. این پیش‌نویس نیاز به بررسی و تکمیل توسط وکیل دارد.</p>
+            <div class="mb-4">
+                <label for="petitionDescriptionInput" class="block text-lg font-medium text-gray-700 mb-2">شرح پرونده شما:</label>
+                <textarea id="petitionDescriptionInput" rows="6" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-lg" placeholder="مثال: دادخواست مطالبه مهریه برای خانم سارا احمدی از همسرش علی حسینی، مهریه 100 سکه بهار آزادی تمام، عقد در تاریخ 1400/01/15."></textarea>
+            </div>
+            <button id="generatePetitionBtn" class="btn-primary w-full mt-6 bg-yellow-600 hover:bg-yellow-700">تولید پیش‌نویس دادخواست/شکواییه</button>
+            <div id="petitionLoadingIndicator" class="mt-8 text-yellow-700 text-xl font-semibold hidden">
+                <i class="fas fa-spinner fa-spin ml-2"></i> در حال تولید پیش‌نویس...
+            </div>
+            <div id="petitionGeneratedResult" class="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg text-gray-800 text-lg hidden">
+                <h4 class="text-2xl font-bold mb-4">پیش‌نویس تولید شده:</h4>
+                <textarea id="generatedPetitionContent" rows="15" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-lg whitespace-pre-wrap font-vazirmatn"></textarea>
+                <p class="text-sm text-gray-500 mt-4">این پیش‌نویس توسط هوش مصنوعی تولید شده و صرفاً جهت اطلاع و راهنمایی اولیه است. حتماً قبل از استفاده، توسط وکیل متخصص بررسی و تأیید شود.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Case Roadmap Modal -->
+    <div id="caseRoadmapModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeCaseRoadmap">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">راهنمای مراحل رسیدگی به پرونده‌ها</h3>
+            <p class="text-gray-700 mb-6 text-xl">این یک نمونه راهنمای گام به گام برای "دعوای مهریه" است. برای سایر دعاوی، نیاز به محتوای دقیق و ساختاردهی اطلاعات می‌باشد.</p>
+            <div class="space-y-6 text-lg">
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2">مرحله ۱: تنظیم و ثبت دادخواست مهریه</h4>
+                    <p>مدارک لازم: سند ازدواج، شناسنامه، کارت ملی.</p>
+                    <p>زمان تقریبی: ۱ تا ۲ هفته.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2">مرحله ۲: ارجاع به شورای حل اختلاف یا دادگاه</h4>
+                    <p>پس از ثبت، پرونده به شعبه مربوطه ارجاع می‌شود.</p>
+                    <p>زمان تقریبی: ۲ تا ۴ هفته.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2">مرحله ۳: جلسه رسیدگی و صدور رأی بدوی</h4>
+                    <p>حضور طرفین یا وکلای آن‌ها در جلسه دادگاه.</p>
+                    <p>زمان تقریبی: ۱ تا ۳ ماه.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2">مرحله ۴: مرحله تجدیدنظر (در صورت اعتراض)</h4>
+                    <p>مهلت ۲۰ روزه برای اعتراض به رأی بدوی.</p>
+                    <p>۲ ماه از تاریخ ابلاغ رأی برای اشخاص مقیم خارج از ایران.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2">مرحله ۵: اجرای حکم مهریه</h4>
+                    <p>پس از قطعیت رأی، پرونده به اجرای احکام ارجاع می‌شود.</p>
+                    <p>زمان تقریبی: متغیر، بستگی به شرایط زوج دارد.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diyya Calculator Modal -->
+    <div id="diyyaCalculatorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeDiyyaCalculator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">محاسبه‌گر دیه و ارش</h3>
+            <p class="text-gray-700 mb-6 text-xl">این یک نمونه ساده برای نمایش عملکرد است. نرخ دیه سال ۱۴۰۳ (برای ماه‌های غیرحرام) ۲.۴ میلیارد ریال در نظر گرفته شده است. برای محاسبه دقیق، نیاز به قوانین و تعرفه‌های به‌روز و پیاده‌سازی سمت سرور می‌باشد.</p>
+            <div class="mb-4">
+                <label for="injuryType" class="block text-lg font-medium text-gray-700 mb-2">نوع آسیب:</label>
+                <select id="injuryType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg">
+                    <option value="full">دیه کامل یک انسان</option>
+                    <option value="half_finger">قطع نصف انگشت</option>
+                    <option value="broken_leg">شکستگی استخوان پا (بدون عیب)</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="isSacredMonth" class="block text-lg font-medium text-gray-700 mb-2">آیا حادثه در ماه حرام رخ داده است؟</label>
+                <select id="isSacredMonth" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg">
+                    <option value="no">خیر</option>
+                    <option value="yes">بله (اضافه شدن یک سوم دیه)</option>
+                </select>
+            </div>
+            <button id="calculateDiyya" class="btn-primary w-full mt-6">محاسبه</button>
+            <div id="diyyaResult" class="mt-8 p-6 bg-purple-50 border border-purple-200 rounded-lg text-gray-800 text-lg hidden">
+                <p>میزان دیه تقریبی: <span class="font-bold text-purple-700" id="calculatedDiyya"></span> ریال</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contract Generator Modal (AI Powered) -->
+    <div id="contractGeneratorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeContractGenerator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">تنظیم آنلاین قراردادها با هوش مصنوعی</h3>
+            <p class="text-gray-700 mb-6 text-xl">شرح کامل قرارداد مورد نظر خود (طرفین، موضوع، شرایط اصلی، تعهدات) را وارد کنید تا هوش مصنوعی پیش‌نویس اولیه را برای شما تولید کند. این پیش‌نویس نیاز به بررسی و تکمیل توسط وکیل دارد.</p>
+            <div class="mb-4">
+                <label for="contractDescriptionInput" class="block text-lg font-medium text-gray-700 mb-2">شرح قرارداد شما:</label>
+                <textarea id="contractDescriptionInput" rows="6" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-lg" placeholder="مثال: قرارداد اجاره یک واحد آپارتمان بین آقای احمدی (موجر) و خانم کریمی (مستاجر) به مدت یک سال، اجاره ماهیانه 10 میلیون ریال."></textarea>
+            </div>
+            <button id="generateContractBtn" class="btn-primary w-full mt-6 bg-cyan-600 hover:bg-cyan-700">تولید پیش‌نویس قرارداد</button>
+            <div id="contractLoadingIndicator" class="mt-8 text-cyan-700 text-xl font-semibold hidden">
+                <i class="fas fa-spinner fa-spin ml-2"></i> در حال تولید پیش‌نویس...
+            </div>
+            <div id="contractGeneratedResult" class="mt-8 p-6 bg-cyan-50 border border-cyan-200 rounded-lg text-gray-800 text-lg hidden">
+                <h4 class="text-2xl font-bold mb-4">پیش‌نویس تولید شده:</h4>
+                <pre id="generatedContractContent" class="whitespace-pre-wrap font-vazirmatn text-base"></pre>
+                <p class="text-sm text-gray-500 mt-4">این پیش‌نویس توسط هوش مصنوعی تولید شده و صرفاً جهت اطلاع و راهنمایی اولیه است. حتماً قبل از استفاده، توسط وکیل متخصص بررسی و تأیید شود.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legal Time Calculator Modal -->
+    <div id="legalTimeCalculatorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeLegalTimeCalculator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">مبدل محاسبه‌ی زمان‌های قانونی</h3>
+            <p class="text-gray-700 mb-6 text-xl">این مبدل به شما کمک می‌کند تا مهلت‌های قانونی را تخمین بزنید. **توجه داشته باشید که این یک ابزار تخمینی است و شامل پیچیدگی‌های قانونی مانند تعطیلات رسمی (به جز جمعه‌ها در ایران)، ساعات اداری، و تفاوت‌های آیین دادرسی در کشورهای مختلف نمی‌شود.** برای محاسبات دقیق و رسمی، حتماً با وکیل متخصص مشورت کنید.</p>
+
+            <div class="mb-4">
+                <label for="locationType" class="block text-lg font-medium text-gray-700 mb-2">موقعیت:</label>
+                <select id="locationType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg">
+                    <option value="iran">داخل ایران</option>
+                    <option value="outside_iran">خارج از ایران</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="calcType" class="block text-lg font-medium text-gray-700 mb-2">نوع محاسبه:</label>
+                <select id="calcType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg">
+                    <option value="addDays">محاسبه تاریخ پایان مهلت</option>
+                    <option value="daysBetween">محاسبه تعداد روز بین دو تاریخ</option>
+                </select>
+            </div>
+
+            <!-- Calculate Deadline End Date Section -->
+            <div id="calculateDeadlineSection" class="mb-6">
+                <p class="text-gray-600 mb-4 text-base">تاریخ شروع مهلت (مثلاً تاریخ ابلاغ یا قطعیت رأی) را به فرمت شمسی YYYY/MM/DD وارد کنید. (مثال: 1403/04/23)</p>
+                <div class="mb-4">
+                    <label for="deadlineStartDate" class="block text-lg font-medium text-gray-700 mb-2">تاریخ شروع مهلت:</label>
+                    <input type="text" id="deadlineStartDate" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg" placeholder="مثال: 1403/04/23">
+                </div>
+                <div class="mb-4">
+                    <label for="deadlineDays" class="block text-lg font-medium text-gray-700 mb-2">تعداد روزهای مهلت قانونی:</label>
+                    <input type="number" id="deadlineDays" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg" value="20">
+                </div>
+                <button id="calculateDeadlineEndDate" class="btn-primary w-full mt-4 bg-orange-600 hover:bg-orange-700">محاسبه تاریخ پایان مهلت</button>
+                <div id="deadlineEndDateResult" class="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-lg text-gray-800 text-lg hidden">
+                    <p>تاریخ پایان مهلت تقریبی: <span class="font-bold text-orange-700" id="calculatedDeadlineEndDate"></span></p>
+                    <p id="deadlineDisclaimer" class="text-sm text-red-600 mt-2 hidden">توجه: این محاسبه فقط جمعه‌ها را در نظر می‌گیرد و شامل سایر تعطیلات رسمی نمی‌شود.</p>
+                </div>
+            </div>
+
+            <!-- Days Between Section -->
+            <div id="daysBetweenSection" class="mb-6 hidden">
+                <p class="text-gray-600 mb-4 text-base">تاریخ‌ها را به فرمت شمسی YYYY/MM/DD وارد کنید. (مثال: 1403/04/23)</p>
+                <div class="mb-4">
+                    <label for="date1" class="block text-lg font-medium text-gray-700 mb-2">تاریخ اول:</label>
+                    <input type="text" id="date1" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg" placeholder="مثال: 1403/04/23">
+                </div>
+                <div class="mb-4">
+                    <label for="date2" class="block text-lg font-medium text-gray-700 mb-2">تاریخ دوم:</label>
+                    <input type="text" id="date2" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg" placeholder="مثال: 1403/05/10">
+                </div>
+                <button id="calculateDaysBetween" class="btn-primary w-full mt-4 bg-orange-600 hover:bg-orange-700">محاسبه تعداد روز</button>
+                <div id="daysBetweenResult" class="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-lg text-gray-800 text-lg hidden">
+                    <p>تعداد روز بین دو تاریخ: <span class="font-bold text-orange-700" id="calculatedDaysBetween"></span> روز</p>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">
+                <i class="fas fa-exclamation-triangle ml-1"></i> این ابزار برای تخمین اولیه است و برای محاسبات حقوقی دقیق، خصوصاً در خارج از ایران، حتماً با وکیل متخصص مشورت کنید.
+            </p>
+        </div>
+    </div>
+
+    <!-- Legal Glossary Modal (Moved from main section) -->
+    <div id="legalGlossaryModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeLegalGlossary">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">واژه‌نامه حقوقی</h3>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                در این بخش می‌توانید یک اصطلاح حقوقی را وارد کنید تا هوش مصنوعی Gemini توضیح ساده و قابل فهمی از آن را برای شما ارائه دهد.
+            </p>
+            <div class="mb-6">
+                <label for="legalTermInput" class="block text-lg font-medium text-gray-700 mb-2">اصطلاح حقوقی:</label>
+                <textarea id="legalTermInput" rows="3" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg placeholder-gray-500" placeholder="مثال: مهریه، حضانت، کلاهبرداری"></textarea>
+            </div>
+            <button id="explainTermBtn" class="btn-primary w-full md:w-auto bg-blue-500 hover:bg-blue-600">
+                توضیح اصطلاح
+            </button>
+            <div id="loadingIndicator" class="mt-8 text-blue-700 text-xl font-semibold hidden">
+                <i class="fas fa-spinner fa-spin ml-2"></i> در حال پردازش...
+            </div>
+            <div id="legalTermResult" class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 text-lg leading-relaxed hidden text-right">
+                <!-- AI generated explanation will appear here -->
+            </div>
+            <p class="text-sm text-gray-500 mt-6">
+                <i class="fas fa-info-circle ml-1"></i> توضیحات ارائه شده توسط هوش مصنوعی صرفاً جهت اطلاع‌سانی عمومی است و جایگزین مشاوره حقوقی تخصصی نمی‌باشد.
+            </p>
+        </div>
+    </div>
+
+    <!-- AI Lawsuit Guide Modal -->
+    <div id="aiLawsuitGuideModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeAiLawsuitGuide">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">ربات راهنمای طرح دعوا (مشاور هوشمند)</h3>
+            <p class="text-gray-700 mb-6 text-xl">با این ربات چت کنید تا به شما در مراحل اولیه طرح دعوا راهنمایی کند. لطفاً سوالات خود را واضح و مختصر مطرح کنید.</p>
+            <div class="chat-container mb-6" id="chatContainer">
+                <div class="ai-message chat-message">سلام! من مشاور هوشمند شما هستم. لطفاً شرح مختصری از مشکل حقوقی خود را بیان کنید تا به شما بگویم آیا امکان شکایت وجود دارد یا خیر.</div>
+            </div>
+            <div class="flex">
+                <input type="text" id="chatInput" class="flex-grow p-3 border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg" placeholder="پیام خود را اینجا بنویسید...">
+                <button id="sendChatBtn" class="bg-purple-700 text-white px-6 py-3 rounded-l-lg hover:bg-purple-800 transition-colors duration-300">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div id="chatLoadingIndicator" class="mt-4 text-purple-700 text-lg font-semibold hidden">
+                <i class="fas fa-spinner fa-spin ml-2"></i> در حال پاسخگویی...
+            </div>
+            <p class="text-sm text-gray-500 mt-4">
+                <i class="fas fa-info-circle ml-1"></i> این مشاور هوشمند صرفاً جهت راهنمایی اولیه است و جایگزین مشاوره حقوقی تخصصی نمی‌باشد.
+            </p>
+        </div>
+    </div>
+
+    <!-- Salary Calculator Modal -->
+    <div id="salaryCalculatorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeSalaryCalculator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">ماشین حساب پیشرفته حقوق و مزایا</h3>
+            <p class="text-gray-700 mb-6 text-xl">این یک نمونه ساده برای محاسبه حقوق و مزایاست. برای دقت کامل، نیاز به اعمال تمامی قوانین کار و بخشنامه‌های سالیانه می‌باشد.</p>
+            <div class="mb-4">
+                <label for="baseSalary" class="block text-lg font-medium text-gray-700 mb-2">حقوق پایه ماهانه (ریال):</label>
+                <input type="number" id="baseSalary" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-lg" value="100000000">
+            </div>
+            <div class="mb-4">
+                <label for="overtimeHours" class="block text-lg font-medium text-gray-700 mb-2">ساعات اضافه‌کاری ماهانه:</label>
+                <input type="number" id="overtimeHours" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-lg" value="20">
+            </div>
+            <div class="mb-4">
+                <label for="yearsOfService" class="block text-lg font-medium text-gray-700 mb-2">سال سابقه کار:</label>
+                <input type="number" id="yearsOfService" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-lg" value="5">
+            </div>
+            <button id="calculateSalary" class="btn-primary w-full mt-6 bg-teal-600 hover:bg-teal-700">محاسبه حقوق</button>
+            <div id="salaryResult" class="mt-8 p-6 bg-teal-50 border border-teal-200 rounded-lg text-gray-800 text-lg hidden">
+                <p>حقوق خالص تقریبی ماهانه: <span class="font-bold text-teal-700" id="calculatedNetSalary"></span> ریال</p>
+                <p>سنوات (به ازای هر سال): <span class="font-bold text-teal-700" id="calculatedSeverance"></span> ریال</p>
+                <p>عیدی (سالانه): <span class="font-bold text-teal-700" id="calculatedEidieh"></span> ریال</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Late Payment Calculator Modal -->
+    <div id="latePaymentCalculatorModal" class="modal">
+        <div class="modal-content text-right">
+            <span class="close-button" id="closeLatePaymentCalculator">&times;</span>
+            <h3 class="text-4xl font-bold text-gray-900 mb-8 text-center">محاسبه‌گر زیان تأخیر تأدیه</h3>
+            <p class="text-gray-700 mb-6 text-xl">این یک نمونه ساده برای محاسبه زیان تأخیر تأدیه است. نرخ سود بر اساس نرخ قانونی بانک مرکزی در نظر گرفته شده است. برای دقت کامل، نیاز به نرخ‌های به‌روز و فرمول‌های دقیق قانونی می‌باشد.</p>
+            <div class="mb-4">
+                <label for="debtAmount" class="block text-lg font-medium text-gray-700 mb-2">مبلغ بدهی (ریال):</label>
+                <input type="number" id="debtAmount" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-lg" value="10000000">
+            </div>
+            <div class="mb-4">
+                <label for="debtStartDate" class="block text-lg font-medium text-gray-700 mb-2">تاریخ شروع بدهی (مثال: 1402/01/01):</label>
+                <input type="text" id="debtStartDate" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-lg" placeholder="YYYY/MM/DD">
+            </div>
+            <div class="mb-4">
+                <label for="debtEndDate" class="block text-lg font-medium text-gray-700 mb-2">تاریخ پایان محاسبه (مثال: 1403/04/23):</label>
+                <input type="text" id="debtEndDate" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-lg" placeholder="YYYY/MM/DD">
+            </div>
+            <button id="calculateLatePayment" class="btn-primary w-full mt-6 bg-pink-600 hover:bg-pink-700">محاسبه زیان</button>
+            <div id="latePaymentResult" class="mt-8 p-6 bg-pink-50 border border-pink-200 rounded-lg text-gray-800 text-lg hidden">
+                <p>زیان تأخیر تأدیه تقریبی: <span class="font-bold text-pink-700" id="calculatedLatePayment"></span> ریال</p>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Tawk.to Script -->
     <script type="text/javascript">
@@ -430,10 +978,53 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav').querySelector('ul');
+
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('open');
+            });
+
+            // Close menu when a link is clicked (for smooth scrolling)
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('open')) {
+                        mainNav.classList.remove('open');
+                    }
+                });
+            });
+
+            // --- Current Date and Time Functionality (Jalali) ---
+            const currentDateTimeDiv = document.getElementById('currentDateTime');
+
+            function updateDateTime() {
+                const now = new Date();
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                    calendar: 'persian' // Explicitly set Persian calendar
+                };
+                const persianDateTime = now.toLocaleDateString('fa-IR', options);
+                currentDateTimeDiv.textContent = `تاریخ و زمان فعلی: ${persianDateTime}`;
+            }
+
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+
+            // --- Legal Glossary Functionality ---
             const legalTermInput = document.getElementById('legalTermInput');
             const explainTermBtn = document.getElementById('explainTermBtn');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const legalTermResult = document.getElementById('legalTermResult');
+            const API_KEY = "AIzaSyC0NWFJysXu0eMXGjs-p6C8-1pz5EDpLfQ"; // Your Gemini API Key
 
             explainTermBtn.addEventListener('click', async () => {
                 const term = legalTermInput.value.trim();
@@ -449,15 +1040,10 @@
 
                 try {
                     let chatHistory = [];
-                    // Changed prompt to be more direct and less conversational for API
                     const prompt = `توضیح ساده و مختصر (حداکثر 3-4 خط) اصطلاح حقوقی "${term}" به زبان فارسی برای عموم مردم، بدون استفاده از اصطلاحات پیچیده حقوقی:`;
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
-                    // IMPORTANT: If you are seeing a 403 error, you might need to
-                    // paste your Google AI Studio API key here.
-                    // Get your API key from: https://aistudio.google.com/app/apikey
-                    const apiKey = "AIzaSyC0NWFJysXu0eMXGjs-p6C8-1pz5EDpLfQ"; // <--- PASTE YOUR API KEY HERE IF YOU GET 403 ERROR
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
                     const response = await fetch(apiUrl, {
                         method: 'POST',
@@ -465,12 +1051,11 @@
                         body: JSON.stringify(payload)
                     });
 
-                    // Check if the HTTP response itself was successful
                     if (!response.ok) {
                         const errorData = await response.json();
-                        console.error('API Error Response:', errorData); // Log the full error from API
+                        console.error('API Error Response:', errorData);
                         legalTermResult.innerHTML = `<p class="text-red-600">خطا در ارتباط با هوش مصنوعی: ${errorData.error ? errorData.error.message : 'خطای نامشخص'}. لطفاً دوباره تلاش کنید.</p>`;
-                        return; // Exit if response is not OK
+                        return;
                     }
 
                     const result = await response.json();
@@ -481,18 +1066,542 @@
                         const text = result.candidates[0].content.parts[0].text;
                         legalTermResult.innerHTML = `<p>${text}</p>`;
                     } else {
-                        // This block handles cases where the API call was successful (response.ok)
-                        // but the structure of the result is not as expected (e.g., no candidates)
                         console.warn('Unexpected API response structure or no candidates:', result);
                         legalTermResult.innerHTML = '<p class="text-red-600">متاسفانه توضیحی یافت نشد یا ساختار پاسخ غیرمنتظره بود. لطفاً دوباره تلاش کنید یا اصطلاح دیگری را امتحان کنید.</p>';
                     }
                 } catch (error) {
-                    console.error('Network or unexpected error during fetch:', error); // Log network errors
-                    legalTermResult.innerHTML = '<p class="text-red-600">خطا در ارتباط با سرور. لطفاتاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</p>';
+                    console.error('Network or unexpected error during fetch:', error);
+                    legalTermResult.innerHTML = '<p class="text-red-600">خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</p>';
                 } finally {
                     loadingIndicator.classList.add('hidden');
                     legalTermResult.classList.remove('hidden');
                 }
+            });
+
+            // --- Modals Functionality ---
+            const modals = document.querySelectorAll('.modal');
+            const closeButtons = document.querySelectorAll('.close-button');
+
+            function openModal(modalId) {
+                document.getElementById(modalId).style.display = 'flex';
+            }
+
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+
+            // Event Listeners for opening modals
+            document.getElementById('openCostCalculator').addEventListener('click', () => openModal('costCalculatorModal'));
+            document.getElementById('openPetitionGenerator').addEventListener('click', () => openModal('petitionGeneratorModal'));
+            document.getElementById('openCaseRoadmap').addEventListener('click', () => openModal('caseRoadmapModal'));
+            document.getElementById('openDiyyaCalculator').addEventListener('click', () => openModal('diyyaCalculatorModal'));
+            document.getElementById('openContractGenerator').addEventListener('click', () => openModal('contractGeneratorModal'));
+            document.getElementById('openLegalTimeCalculator').addEventListener('click', () => openModal('legalTimeCalculatorModal')); // Legal Time Calculator
+            document.getElementById('openLegalGlossary').addEventListener('click', () => openModal('legalGlossaryModal')); // Legal Glossary
+            document.getElementById('openAiLawsuitGuide').addEventListener('click', () => openModal('aiLawsuitGuideModal')); // AI Lawsuit Guide
+            document.getElementById('openSalaryCalculator').addEventListener('click', () => openModal('salaryCalculatorModal')); // Salary Calculator
+            document.getElementById('openLatePaymentCalculator').addEventListener('click', () => openModal('latePaymentCalculatorModal')); // Late Payment Calculator
+
+
+            // Event Listeners for closing modals
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    closeModal(event.target.closest('.modal').id);
+                });
+            });
+
+            // Close modal when clicking outside of the modal content
+            modals.forEach(modal => {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+
+            // --- Cost Calculator Logic (Simplified) ---
+            const calculateCostBtn = document.getElementById('calculateCost');
+            const caseTypeSelect = document.getElementById('caseType');
+            const claimAmountInput = document.getElementById('claimAmount');
+            const calculatedAmountSpan = document.getElementById('calculatedAmount');
+            const costResultDiv = document.getElementById('costResult');
+
+            calculateCostBtn.addEventListener('click', () => {
+                const caseType = caseTypeSelect.value;
+                const claimAmount = parseFloat(claimAmountInput.value);
+                let calculatedCost = 0;
+
+                // Simplified calculation logic (for demonstration)
+                if (isNaN(claimAmount) || claimAmount <= 0) {
+                    calculatedAmountSpan.textContent = "ورودی نامعتبر";
+                    costResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                switch (caseType) {
+                    case 'civil':
+                        calculatedCost = claimAmount * 0.035; // Example: 3.5% of claim amount
+                        break;
+                    case 'criminal':
+                        calculatedCost = 5000000; // Fixed example cost
+                        break;
+                    case 'family':
+                        calculatedCost = 3000000; // Fixed example cost
+                        break;
+                    case 'appeal':
+                        calculatedCost = claimAmount * 0.045; // Example: 4.5% of claim amount
+                        break;
+                    default:
+                        calculatedCost = 0;
+                }
+
+                calculatedAmountSpan.textContent = calculatedCost.toLocaleString('fa-IR');
+                costResultDiv.classList.remove('hidden');
+            });
+
+            // --- Petition Generator Logic (AI Powered) ---
+            const petitionDescriptionInput = document.getElementById('petitionDescriptionInput');
+            const generatePetitionBtn = document.getElementById('generatePetitionBtn');
+            const petitionLoadingIndicator = document.getElementById('petitionLoadingIndicator');
+            const petitionGeneratedResult = document.getElementById('petitionGeneratedResult');
+            const generatedPetitionContent = document.getElementById('generatedPetitionContent');
+
+            generatePetitionBtn.addEventListener('click', async () => {
+                const description = petitionDescriptionInput.value.trim();
+                if (!description) {
+                    generatedPetitionContent.value = 'لطفاً شرح پرونده را وارد کنید.';
+                    petitionGeneratedResult.classList.remove('hidden');
+                    return;
+                }
+
+                petitionLoadingIndicator.classList.remove('hidden');
+                petitionGeneratedResult.classList.add('hidden');
+                generatedPetitionContent.value = ''; // Clear previous results
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `بر اساس شرح زیر، یک پیش‌نویس دادخواست یا شکواییه حقوقی به زبان فارسی (با رعایت ساختار حقوقی و ذکر بخش‌های اصلی مانند خواهان، خوانده، خواسته، شرح دادخواست و امضا) برای من تولید کن. متن را کامل و جامع بنویس و از [نام و نام خانوادگی] یا [جزئیات] برای فیلدهای قابل تکمیل استفاده کن.
+شرح پرونده: ${description}`;
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('API Error Response:', errorData);
+                        generatedPetitionContent.value = `خطا در ارتباط با هوش مصنوعی: ${errorData.error ? errorData.error.message : 'خطای نامشخص'}. لطفاً دوباره تلاش کنید.`;
+                        return;
+                    }
+
+                    const result = await response.json();
+                    console.log('Petition AI Response:', result);
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        if (text.trim() === '') {
+                            generatedPetitionContent.value = 'متاسفانه هوش مصنوعی پیش‌نویسی تولید نکرد. لطفاً شرح دقیق‌تری ارائه دهید.';
+                        } else {
+                            generatedPetitionContent.value = text;
+                        }
+                    } else {
+                        console.warn('Unexpected API response structure or no candidates for petition:', result);
+                        generatedPetitionContent.value = 'متاسفانه پیش‌نویسی تولید نشد. لطفاً شرح دقیق‌تری ارائه دهید.';
+                    }
+                } catch (error) {
+                    console.error('Network or unexpected error during fetch for petition:', error);
+                    generatedPetitionContent.value = 'خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.';
+                } finally {
+                    petitionLoadingIndicator.classList.add('hidden');
+                    petitionGeneratedResult.classList.remove('hidden');
+                }
+            });
+
+            // --- Diyya Calculator Logic (Simplified) ---
+            const calculateDiyyaBtn = document.getElementById('calculateDiyya');
+            const injuryTypeSelect = document.getElementById('injuryType');
+            const isSacredMonthSelect = document.getElementById('isSacredMonth');
+            const calculatedDiyyaSpan = document.getElementById('calculatedDiyya');
+            const diyyaResultDiv = document.getElementById('diyyaResult');
+
+            const baseDiyya = 2400000000; // 2.4 Billion Rial - Example for 1403
+
+            calculateDiyyaBtn.addEventListener('click', () => {
+                const injuryType = injuryTypeSelect.value;
+                const isSacredMonth = isSacredMonthSelect.value === 'yes';
+                let diyyaAmount = 0;
+
+                switch (injuryType) {
+                    case 'full':
+                        diyyaAmount = baseDiyya;
+                        break;
+                    case 'half_finger':
+                        diyyaAmount = baseDiyya / 20;
+                        break;
+                    case 'broken_leg':
+                        diyyaAmount = baseDiyya * 0.05;
+                        break;
+                    default:
+                        diyyaAmount = 0;
+                }
+
+                if (isSacredMonth) {
+                    diyyaAmount += diyyaAmount / 3;
+                }
+
+                calculatedDiyyaSpan.textContent = diyyaAmount.toLocaleString('fa-IR');
+                diyyaResultDiv.classList.remove('hidden');
+            });
+
+            // --- Contract Generator Logic (AI Powered) ---
+            const contractDescriptionInput = document.getElementById('contractDescriptionInput');
+            const generateContractBtn = document.getElementById('generateContractBtn');
+            const contractLoadingIndicator = document.getElementById('contractLoadingIndicator');
+            const contractGeneratedResult = document.getElementById('contractGeneratedResult');
+            const generatedContractContent = document.getElementById('generatedContractContent');
+
+            generateContractBtn.addEventListener('click', async () => {
+                const description = contractDescriptionInput.value.trim();
+                if (!description) {
+                    generatedContractContent.value = 'لطفاً شرح قرارداد را وارد کنید.';
+                    contractGeneratedResult.classList.remove('hidden');
+                    return;
+                }
+
+                contractLoadingIndicator.classList.remove('hidden');
+                contractGeneratedResult.classList.add('hidden');
+                generatedContractContent.value = ''; // Clear previous results
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `بر اساس شرح زیر، یک پیش‌نویس قرارداد حقوقی (مانند اجاره، خرید و فروش، وکالت و...) به زبان فارسی (با رعایت ساختار حقوقی و ذکر بخش‌های اصلی مانند طرفین، موضوع قرارداد، مدت، مبلغ و تعهدات) برای من تولید کن. متن را کامل و جامع بنویس و از [نام و نام خانوادگی] یا [جزئیات] برای فیلدهای قابل تکمیل استفاده کن.
+شرح قرارداد: ${description}`;
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('API Error Response:', errorData);
+                        generatedContractContent.value = `خطا در ارتباط با هوش مصنوعی: ${errorData.error ? errorData.error.message : 'خطای نامشخص'}. لطفاً دوباره تلاش کنید.`;
+                        return;
+                    }
+
+                    const result = await response.json();
+                    console.log('Contract AI Response:', result);
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        if (text.trim() === '') {
+                            generatedContractContent.value = 'متاسفانه هوش مصنوعی پیش‌نویسی تولید نکرد. لطفاً شرح دقیق‌تری ارائه دهید.';
+                        } else {
+                            generatedContractContent.value = text;
+                        }
+                    } else {
+                        console.warn('Unexpected API response structure or no candidates for contract:', result);
+                        generatedContractContent.value = 'متاسفانه پیش‌نویسی تولید نشد. لطفاً شرح دقیق‌تری ارائه دهید.';
+                    }
+                } catch (error) {
+                    console.error('Network or unexpected error during fetch for contract:', error);
+                    generatedContractContent.value = 'خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.';
+                } finally {
+                    contractLoadingIndicator.classList.add('hidden');
+                    contractGeneratedResult.classList.remove('hidden');
+                }
+            });
+
+            // --- Legal Time Calculator Logic ---
+            const locationTypeSelect = document.getElementById('locationType');
+            const calcTypeSelect = document.getElementById('calcType');
+            const calculateDeadlineSection = document.getElementById('calculateDeadlineSection');
+            const daysBetweenSection = document.getElementById('daysBetweenSection');
+
+            const deadlineStartDateInput = document.getElementById('deadlineStartDate');
+            const deadlineDaysInput = document.getElementById('deadlineDays');
+            const calculateDeadlineEndDateBtn = document.getElementById('calculateDeadlineEndDate');
+            const deadlineEndDateResultDiv = document.getElementById('deadlineEndDateResult');
+            const calculatedDeadlineEndDateSpan = document.getElementById('calculatedDeadlineEndDate');
+            const deadlineDisclaimer = document.getElementById('deadlineDisclaimer');
+
+            const date1Input = document.getElementById('date1');
+            const date2Input = document.getElementById('date2');
+            const calculateDaysBetweenBtn = document.getElementById('calculateDaysBetween');
+            const daysBetweenResultDiv = document.getElementById('daysBetweenResult');
+            const calculatedDaysBetweenSpan = document.getElementById('calculatedDaysBetween');
+
+            // Helper function to convert Jalali string (YYYY/MM/DD) to Gregorian Date object
+            function jalaliToGregorian(jalaliDateString) {
+                const parts = jalaliDateString.split('/').map(Number);
+                if (parts.length !== 3 || isNaN(parts[0]) || isNaN(parts[1]) || isNaN(parts[2])) {
+                    return null; // Indicate invalid format
+                }
+                const gDate = jalaali.jalaaliToGregorian(parts[0], parts[1], parts[2]);
+                return new Date(gDate.gy, gDate.gm - 1, gDate.gd);
+            }
+
+            // Helper function to convert Gregorian Date object to Jalali string
+            function gregorianToJalali(gregorianDate) {
+                const jDate = jalaali.toJalaali(gregorianDate.getFullYear(), gregorianDate.getMonth() + 1, gregorianDate.getDate());
+                return `${jDate.jy}/${String(jDate.jm).padStart(2, '0')}/${String(jDate.jd).padStart(2, '0')}`;
+            }
+
+            // Initial display based on calcType
+            calcTypeSelect.addEventListener('change', () => {
+                if (calcTypeSelect.value === 'addDays') {
+                    calculateDeadlineSection.classList.remove('hidden');
+                    daysBetweenSection.classList.add('hidden');
+                    deadlineEndDateResultDiv.classList.add('hidden');
+                } else {
+                    calculateDeadlineSection.classList.add('hidden');
+                    daysBetweenSection.classList.remove('hidden');
+                    daysBetweenResultDiv.classList.add('hidden');
+                }
+            });
+
+            calculateDeadlineEndDateBtn.addEventListener('click', () => {
+                const startDateStr = deadlineStartDateInput.value.trim();
+                const deadlineDays = parseInt(deadlineDaysInput.value);
+                const location = locationTypeSelect.value;
+
+                if (!startDateStr || isNaN(deadlineDays)) {
+                    calculatedDeadlineEndDateSpan.textContent = "ورودی نامعتبر";
+                    deadlineEndDateResultDiv.classList.remove('hidden');
+                    deadlineDisclaimer.classList.add('hidden');
+                    return;
+                }
+
+                let currentDate = jalaliToGregorian(startDateStr);
+
+                if (!currentDate || isNaN(currentDate.getTime())) {
+                    calculatedDeadlineEndDateSpan.textContent = "تاریخ نامعتبر (فرمت YYYY/MM/DD)";
+                    deadlineEndDateResultDiv.classList.remove('hidden');
+                    deadlineDisclaimer.classList.add('hidden');
+                    return;
+                }
+
+                let daysAdded = 0;
+                while (daysAdded < deadlineDays) {
+                    currentDate.setDate(currentDate.getDate() + 1); // Add one day
+
+                    if (location === 'iran') {
+                        // Check if it's Friday (getDay() returns 0 for Sunday, 5 for Friday)
+                        if (currentDate.getDay() === 5) {
+                            continue; // Skip Friday, effectively adding another day to compensate
+                        }
+                    }
+                    // For outside_iran, no specific weekend/holiday logic is applied here
+                    daysAdded++;
+                }
+
+                calculatedDeadlineEndDateSpan.textContent = gregorianToJalali(currentDate);
+                deadlineEndDateResultDiv.classList.remove('hidden');
+
+                if (location === 'iran') {
+                    deadlineDisclaimer.classList.remove('hidden');
+                } else {
+                    deadlineDisclaimer.classList.add('hidden');
+                }
+            });
+
+            calculateDaysBetweenBtn.addEventListener('click', () => {
+                const date1Str = date1Input.value.trim();
+                const date2Str = date2Input.value.trim();
+
+                if (!date1Str || !date2Str) {
+                    calculatedDaysBetweenSpan.textContent = "ورودی نامعتبر";
+                    daysBetweenResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                const date1 = jalaliToGregorian(date1Str);
+                const date2 = jalaliToGregorian(date2Str);
+
+                if (!date1 || !date2 || isNaN(date1.getTime()) || isNaN(date2.getTime())) {
+                    calculatedDaysBetweenSpan.textContent = "تاریخ‌های نامعتبر (فرمت YYYY/MM/DD)";
+                    daysBetweenResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                const diffTime = Math.abs(date2 - date1);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                calculatedDaysBetweenSpan.textContent = diffDays.toLocaleString('fa-IR');
+                daysBetweenResultDiv.classList.remove('hidden');
+            });
+
+
+            // --- AI Lawsuit Guide Logic ---
+            const chatContainer = document.getElementById('chatContainer');
+            const chatInput = document.getElementById('chatInput');
+            const sendChatBtn = document.getElementById('sendChatBtn');
+            const chatLoadingIndicator = document.getElementById('chatLoadingIndicator');
+
+            sendChatBtn.addEventListener('click', async () => {
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) return;
+
+                // Add user message to chat
+                const userMsgDiv = document.createElement('div');
+                userMsgDiv.className = 'chat-message user-message';
+                userMsgDiv.textContent = userMessage;
+                chatContainer.appendChild(userMsgDiv);
+                chatInput.value = ''; // Clear input
+                chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
+
+                chatLoadingIndicator.classList.remove('hidden');
+
+                try {
+                    let chatHistory = [{ role: "user", parts: [{ text: userMessage }] }];
+                    const prompt = `شما یک ربات راهنمای حقوقی هستید. به سوال کاربر در مورد اینکه "آیا می‌تواند شکایت کند یا خیر" فقط با "بله" یا "خیر" و یک توضیح بسیار مختصر (در حد یک جمله) پاسخ دهید. اگر سوال خارج از این حوزه بود، مودبانه اعلام کنید که نمی‌توانید پاسخ دهید.
+                    مثال:
+                    کاربر: من کارگر بودم، بیمه نبودم، کارفرما حقوق نداده
+                    شما: بله، می‌توانید شکایت کنید زیرا قانون کار از حقوق کارگران حمایت می‌کند.
+                    
+                    حالا به سوال زیر پاسخ دهید:
+                    ${userMessage}`;
+
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('AI Chat API Error:', errorData);
+                        const aiMsgDiv = document.createElement('div');
+                        aiMsgDiv.className = 'chat-message ai-message';
+                        aiMsgDiv.textContent = 'متاسفانه در حال حاضر قادر به پاسخگویی نیستم. لطفاً بعداً تلاش کنید.';
+                        chatContainer.appendChild(aiMsgDiv);
+                    } else {
+                        const result = await response.json();
+                        const aiText = result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0
+                            ? result.candidates[0].content.parts[0].text
+                            : 'متاسفانه پاسخی دریافت نشد.';
+
+                        const aiMsgDiv = document.createElement('div');
+                        aiMsgDiv.className = 'chat-message ai-message';
+                        aiMsgDiv.textContent = aiText;
+                        chatContainer.appendChild(aiMsgDiv);
+                    }
+                } catch (error) {
+                    console.error('Network or unexpected error during AI chat fetch:', error);
+                    const aiMsgDiv = document.createElement('div');
+                    aiMsgDiv.className = 'chat-message ai-message';
+                    aiMsgDiv.textContent = 'خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.';
+                    chatContainer.appendChild(aiMsgDiv);
+                } finally {
+                    chatLoadingIndicator.classList.add('hidden');
+                    chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom again
+                }
+            });
+
+            // --- Salary Calculator Logic (Simplified) ---
+            const baseSalaryInput = document.getElementById('baseSalary');
+            const overtimeHoursInput = document.getElementById('overtimeHours');
+            const yearsOfServiceInput = document.getElementById('yearsOfService');
+            const calculateSalaryBtn = document.getElementById('calculateSalary');
+            const calculatedNetSalarySpan = document.getElementById('calculatedNetSalary');
+            const calculatedSeveranceSpan = document.getElementById('calculatedSeverance');
+            const calculatedEidiehSpan = document.getElementById('calculatedEidieh');
+            const salaryResultDiv = document.getElementById('salaryResult');
+
+            calculateSalaryBtn.addEventListener('click', () => {
+                const baseSalary = parseFloat(baseSalaryInput.value);
+                const overtimeHours = parseFloat(overtimeHoursInput.value);
+                const yearsOfService = parseFloat(yearsOfServiceInput.value);
+
+                if (isNaN(baseSalary) || isNaN(overtimeHours) || isNaN(yearsOfService) ||
+                    baseSalary <= 0 || overtimeHours < 0 || yearsOfService < 0) {
+                    calculatedNetSalarySpan.textContent = "ورودی نامعتبر";
+                    calculatedSeveranceSpan.textContent = "ورودی نامعتبر";
+                    calculatedEidiehSpan.textContent = "ورودی نامعتبر";
+                    salaryResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                // Simplified calculations (for demonstration)
+                const dailyWage = baseSalary / 30; // Assuming 30 days in a month
+                const hourlyWage = dailyWage / 7.33; // Assuming 7.33 hours per workday
+
+                const overtimePay = overtimeHours * hourlyWage * 1.4; // 40% extra for overtime
+                const netSalary = baseSalary + overtimePay; // Very simplified, no deductions
+
+                const severance = yearsOfService * baseSalary; // Simplified: 1 month per year
+                const eidieh = baseSalary * 2; // Simplified: 2 months basic salary for Eidieh
+
+                calculatedNetSalarySpan.textContent = netSalary.toLocaleString('fa-IR');
+                calculatedSeveranceSpan.textContent = severance.toLocaleString('fa-IR');
+                calculatedEidiehSpan.textContent = eidieh.toLocaleString('fa-IR');
+                salaryResultDiv.classList.remove('hidden');
+            });
+
+            // --- Late Payment Damages Calculator Logic ---
+            const debtAmountInput = document.getElementById('debtAmount');
+            const debtStartDateInput = document.getElementById('debtStartDate');
+            const debtEndDateInput = document.getElementById('debtEndDate');
+            const calculateLatePaymentBtn = document.getElementById('calculateLatePayment');
+            const calculatedLatePaymentSpan = document.getElementById('calculatedLatePayment');
+            const latePaymentResultDiv = document.getElementById('latePaymentResult');
+
+            calculateLatePaymentBtn.addEventListener('click', () => {
+                const debtAmount = parseFloat(debtAmountInput.value);
+                const debtStartDateStr = debtStartDateInput.value.trim();
+                const debtEndDateStr = debtEndDateInput.value.trim();
+
+                if (isNaN(debtAmount) || debtAmount <= 0 || !debtStartDateStr || !debtEndDateStr) {
+                    calculatedLatePaymentSpan.textContent = "ورودی نامعتبر";
+                    latePaymentResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                // Parse dates (assuming YYYY/MM/DD Gregorian for simplicity in Date object)
+                const partsStart = debtStartDateStr.split('/').map(Number);
+                const partsEnd = debtEndDateStr.split('/').map(Number);
+
+                if (partsStart.length !== 3 || isNaN(partsStart[0]) || isNaN(partsStart[1]) || isNaN(partsStart[2]) ||
+                    partsEnd.length !== 3 || isNaN(partsEnd[0]) || isNaN(partsEnd[1]) || isNaN(partsEnd[2])) {
+                    calculatedLatePaymentSpan.textContent = "فرمت تاریخ نامعتبر (YYYY/MM/DD)";
+                    latePaymentResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                const startDate = new Date(partsStart[0], partsStart[1] - 1, partsStart[2]);
+                const endDate = new Date(partsEnd[0], partsEnd[1] - 1, partsEnd[2]);
+
+                if (isNaN(startDate.getTime()) || isNaN(endDate.getTime()) || startDate > endDate) {
+                    calculatedLatePaymentSpan.textContent = "تاریخ‌های نامعتبر";
+                    latePaymentResultDiv.classList.remove('hidden');
+                    return;
+                }
+
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                // Simplified interest rate (e.g., 18% annually -> 0.000493 per day)
+                const dailyInterestRate = 0.18 / 365;
+                const latePaymentAmount = debtAmount * diffDays * dailyInterestRate;
+
+                calculatedLatePaymentSpan.textContent = latePaymentAmount.toLocaleString('fa-IR');
+                latePaymentResultDiv.classList.remove('hidden');
             });
         });
     </script>
