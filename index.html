@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وکیل امیرحسین بای | وکیل شما در گلستان</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome برای آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- فونت‌های گوگل: Inter (برای اطمینان از سازگاری با Tailwind) و Vazirmatn/Shabnam برای فارسی -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet" type="text/css">
+
+    <style>
+        /* تنظیمات سفارشی Tailwind و فونت‌های فارسی */
+        body {
+            font-family: 'Vazirmatn', 'Inter', sans-serif;
+            direction: rtl;
+            text-align: right;
+            overflow-x: hidden; /* جلوگیری از اسکرول افقی ناخواسته */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Shabnam', 'Inter', sans-serif;
+        }
+
+        /* کلاس‌های سفارشی برای دکمه‌ها و افکت‌ها */
+        .btn-primary {
+            @apply bg-gradient-to-r from-blue-900 to-blue-700 text-white px-10 py-4 rounded-full text-xl font-bold shadow-2xl transition-all duration-300 ease-in-out hover:from-blue-800 hover:to-blue-600 hover:scale-105 hover:shadow-3xl transform;
+        }
+        .btn-secondary {
+            @apply bg-transparent text-blue-900 border-2 border-blue-900 px-10 py-4 rounded-full text-xl font-bold transition-all duration-300 ease-in-out hover:bg-blue-900 hover:text-white hover:shadow-xl transform;
+        }
+        .card-elegant {
+            @apply bg-white p-10 rounded-2xl shadow-xl transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-102 transform;
+        }
+        .text-gradient-dark-gold {
+            background: linear-gradient(to right, #263238, #d4af37); /* آبی تیره به طلایی */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Keyframes for fade-in-up animation */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 1.5s ease-out forwards;
+        }
+
+        /* Keyframes for subtle zoom */
+        @keyframes subtle-zoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.02); }
+        }
+        .animate-subtle-zoom {
+            animation: subtle-zoom 10s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation Bar -->
+    <header class="bg-gray-900 text-white py-5 shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-4xl font-extrabold text-yellow-400 hover:text-yellow-300 transition-colors duration-300 tracking-wide">
+                امیرحسین بای
+            </a>
+            <nav>
+                <ul class="flex space-x-10 text-xl">
+                    <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        صفحه اصلی
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#about" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        درباره ما
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#services" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        خدمات
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#why-us" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        چرا ما؟
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#legal-glossary" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        واژه‌نامه حقوقی
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#blog" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        مقالات
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300 relative pb-2 group">
+                        تماس با ما
+                        <span class="absolute bottom-0 right-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-cover bg-center h-screen flex items-center justify-center text-white overflow-hidden" style="background-image: url('https://placehold.co/1920x1080/263238/FFFFFF?text=تصویر+انتزاعی+عدالت+و+قانون');">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-90"></div>
+        <div class="relative z-10 text-center px-6 max-w-5xl animate-fade-in-up">
+            <h1 class="text-7xl md:text-8xl font-extrabold mb-8 leading-tight drop-shadow-lg tracking-wide">
+                وکیل امیرحسین بای
+            </h1>
+            <p class="text-3xl md:text-4xl font-light mb-12 opacity-90 leading-relaxed">
+                <strong class="font-semibold text-yellow-300">دستیابی به عدالت</strong> با تخصص بی‌نظیر، تجربه درخشان و تعهد بی‌قید و شرط در <span class="text-yellow-300">استان گلستان</span>
+            </p>
+            <a href="#contact" class="btn-primary">مشاوره حقوقی رایگان</a>
+        </div>
+    </section>
+
+    <!-- About Section - Short Intro -->
+    <section class="py-24 bg-white shadow-inner">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://placehold.co/300x300/263238/d4af37?text=عکس+وکیل" alt="عکس وکیل امیرحسین بای" class="w-72 h-72 rounded-full object-cover mx-auto mb-12 border-8 border-yellow-500 shadow-2xl transition-transform duration-500 hover:scale-105">
+            <h2 class="text-6xl font-extrabold text-gray-900 mb-10 leading-tight">
+                <span class="text-gradient-dark-gold">درباره وکیل امیرحسین بای</span>
+            </h2>
+            <p class="text-2xl leading-loose max-w-4xl mx-auto text-gray-700 mb-16">
+                امیرحسین بای، وکیل پایه یک دادگستری با بیش از <strong class="font-bold text-blue-800">۱۰ سال تجربه</strong> در حوزه حقوقی، با تعهد به ارائه راه‌حل‌های <strong class="font-bold text-blue-800">خلاقانه و نوآورانه</strong> و پیگیری مستمر پرونده‌ها، در تلاش است تا بهترین نتایج را برای موکلین خود در استان گلستان و سراسر ایران به ارمغان آورد. ما به <strong class="font-bold text-blue-800">جزئیات اهمیت می‌دهیم</strong> و <strong class="font-bold text-blue-800">عدالت را برای شما به ارمغان می‌آوریم.</strong>
+            </p>
+            <a href="#about" class="btn-secondary">بیشتر درباره ما</a>
+        </div>
+    </section>
+
+    <!-- Services Section - Preview -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-6xl font-extrabold text-gray-900 mb-20 leading-tight">
+                <span class="text-gradient-dark-gold">حوزه‌های اصلی فعالیت ما</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-gavel text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">دعاوی ملکی</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">مشاوره و وکالت تخصصی در امور پیچیده خرید و فروش، اجاره، سند و اختلافات ملکی با رویکردی نتیجه‌گرا.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-users text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">دعاوی خانواده</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">ارائه راهکارهای حقوقی دلسوزانه در پرونده‌های طلاق، مهریه، نفقه، حضانت و سایر امور خانوادگی.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-lock text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">دعاوی کیفری</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">دفاع قاطع و حرفه‌ای در پرونده‌های جرایم عمومی و تخصصی، کلاهبرداری و سرقت با حفظ حقوق شما.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-building text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">حقوق شرکت‌ها</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">مشاوره جامع در ثبت شرکت، تنظیم قراردادهای تجاری و رسیدگی به دعاوی حقوقی شرکت‌ها.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-file-contract text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">تنظیم قرارداد</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">تنظیم و بررسی انواع قراردادهای حقوقی و تجاری با دقت فراوان برای حفظ منافع شما.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+                <div class="card-elegant flex flex-col items-center text-center">
+                    <i class="fas fa-landmark text-8xl text-blue-700 mb-8 transition-colors duration-300 hover:text-yellow-600"></i>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-5">امور ثبتی</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">پیگیری و مشاوره در کلیه امور ثبتی، افراز، تفکیک و اصلاح اسناد ملکی.</p>
+                    <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                        جزئیات بیشتر <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-6xl font-extrabold text-white mb-20 leading-tight">
+                <span class="text-gradient-dark-gold">چرا وکیل امیرحسین بای را انتخاب کنید؟</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-handshake-alt-slash text-8xl text-blue-700 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">تعهد بی‌قید و شرط</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">ما با تمام وجود و تا حصول نتیجه مطلوب، پیگیر پرونده شما خواهیم بود. تعهد ما به احقاق حقوق شما، اصلی‌ترین ارزش ماست.</p>
+                </div>
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-lightbulb text-8xl text-yellow-500 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">راهکارهای خلاقانه</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">با تحلیل عمیق و نگاهی نوآورانه به مسائل حقوقی، بهترین و مؤثرترین راهکارها را برای پرونده شما ارائه می‌دهیم.</p>
+                </div>
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-comments text-8xl text-green-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">پاسخگویی و شفافیت</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">همواره در دسترس شما هستیم و با شفافیت کامل، شما را در جریان جزئیات و پیشرفت پرونده قرار می‌دهیم.</p>
+                </div>
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-user-shield text-8xl text-red-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">حفظ محرمانگی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">اطلاعات و جزئیات پرونده شما نزد ما کاملاً محرمانه باقی خواهد ماند. اعتماد شما، سرمایه ماست.</p>
+                </div>
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-map-marked-alt text-8xl text-purple-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">دانش به‌روز</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">با مطالعه مستمر و پیگیری آخرین تغییرات قوانین و رویه‌های قضایی، همواره دانش حقوقی خود را به‌روز نگه می‌داریم.</p>
+                </div>
+                <div class="bg-white text-gray-800 p-10 rounded-3xl shadow-2xl flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
+                    <i class="fas fa-chart-line text-8xl text-cyan-600 mb-8"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">نتیجه‌گرایی</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">هدف نهایی ما، دستیابی به بهترین نتیجه ممکن برای پرونده شماست. ما برای پیروزی شما تلاش می‌کنیم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Glossary Section (Powered by Gemini API) -->
+    <section id="legal-glossary" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-6xl font-extrabold text-gray-900 mb-20 leading-tight">
+                <span class="text-gradient-dark-gold">واژه‌نامه حقوقی</span>
+            </h2>
+            <div class="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-xl">
+                <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                    در این بخش می‌توانید یک اصطلاح حقوقی را وارد کنید تا هوش مصنوعی Gemini توضیح ساده و قابل فهمی از آن را برای شما ارائه دهد.
+                </p>
+                <div class="mb-6">
+                    <textarea id="legalTermInput" rows="3" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg placeholder-gray-500" placeholder="مثال: مهریه، حضانت، کلاهبرداری"></textarea>
+                </div>
+                <button id="explainTermBtn" class="btn-primary w-full md:w-auto">
+                    توضیح اصطلاح
+                </button>
+                <div id="loadingIndicator" class="mt-8 text-blue-700 text-xl font-semibold hidden">
+                    <i class="fas fa-spinner fa-spin ml-2"></i> در حال پردازش...
+                </div>
+                <div id="legalTermResult" class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 text-lg leading-relaxed hidden text-right">
+                    <!-- AI generated explanation will appear here -->
+                </div>
+                <p class="text-sm text-gray-500 mt-6">
+                    <i class="fas fa-info-circle ml-1"></i> توضیحات ارائه شده توسط هوش مصنوعی صرفاً جهت اطلاع‌رسانی عمومی است و جایگزین مشاوره حقوقی تخصصی نمی‌باشد.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/News Section - Preview -->
+    <section id="blog" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-6xl font-extrabold text-gray-900 mb-20 leading-tight">
+                <span class="text-gradient-dark-gold">آخرین مقالات و تحلیل‌های حقوقی</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-102 hover:shadow-2xl">
+                    <img src="https://placehold.co/600x400/263238/d4af37?text=مقاله+1" alt="مقاله 1" class="w-full h-72 object-cover">
+                    <div class="p-8 text-right">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                            <a href="#" class="hover:text-blue-700 transition-colors duration-300">نکات مهم در تنظیم قرارداد اجاره مسکن</a>
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed line-clamp-4">تنظیم قرارداد اجاره یکی از مهم‌ترین مراحلی است که باید با دقت فراوان صورت گیرد تا در آینده از بروز مشکلات حقوقی جلوگیری شود و حقوق طرفین حفظ گردد و از اختلافات احتمالی پیشگیری شود و آرامش خاطر را برای شما به ارمغان آورد.</p>
+                        <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                            ادامه مطلب <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-102 hover:shadow-2xl">
+                    <img src="https://placehold.co/600x400/d4af37/263238?text=مقاله+2" alt="مقاله 2" class="w-full h-72 object-cover">
+                    <div class="p-8 text-right">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                            <a href="#" class="hover:text-blue-700 transition-colors duration-300">آشنایی با حقوق مهریه و نحوه مطالبه آن</a>
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed line-clamp-4">مهریه یکی از حقوق مالی زن در عقد نکاح است که آشنایی با جزئیات آن می‌تواند در مواقع نیاز بسیار کمک‌کننده باشد و از ابهامات جلوگیری کند و فرآیند قانونی را تسهیل بخشد و به شما در احقاق حقوقتان یاری رساند.</p>
+                        <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                            ادامه مطلب <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-102 hover:shadow-2xl">
+                    <img src="https://placehold.co/600x400/263238/d4af37?text=مقاله+3" alt="مقاله 3" class="w-full h-72 object-cover">
+                    <div class="p-8 text-right">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                            <a href="#" class="hover:text-blue-700 transition-colors duration-300">جرایم سایبری: شناخت و راهکارهای مقابله</a>
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed line-clamp-4">با گسترش فناوری و فضای مجازی، جرایم سایبری نیز رو به افزایش است. در این مقاله به معرفی انواع جرایم سایبری و راه‌های مقابله قانونی با آن‌ها می‌پردازیم تا امنیت شما تضمین شود و از خطرات احتمالی در امان بمانید.</p>
+                        <a href="#" class="text-blue-700 hover:text-yellow-600 font-semibold text-xl flex items-center space-x-3 group">
+                            ادامه مطلب <i class="fas fa-arrow-left text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20">
+                <a href="#" class="btn-secondary">مشاهده تمام مقالات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="py-28 bg-gradient-to-r from-gray-900 to-blue-950 text-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 animate-subtle-zoom" style="background-image: url('https://placehold.co/1920x1080/263238/FFFFFF?text=الگوی+انتزاعی'); background-size: cover;"></div>
+        <div class="relative z-10 container mx-auto px-6">
+            <h2 class="text-6xl md:text-7xl font-extrabold mb-10 drop-shadow-lg leading-tight">
+                <span class="text-gradient-dark-gold">آماده برای دریافت مشاوره حقوقی هستید؟</span>
+            </h2>
+            <p class="text-2xl md:text-3xl font-light mb-16 opacity-90 leading-relaxed">
+                همین امروز با ما تماس بگیرید و از تخصص و تجربه بی‌نظیر وکیل امیرحسین بای بهره‌مند شوید.
+            </p>
+            <a href="#contact" class="btn-primary bg-yellow-500 text-gray-900 hover:bg-yellow-600 hover:text-gray-900">تماس با ما</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <ul class="flex justify-center space-x-10 mb-10 text-xl font-medium flex-wrap">
+                <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300">صفحه اصلی</a></li>
+                <li><a href="#about" class="hover:text-yellow-400 transition-colors duration-300">درباره ما</a></li>
+                <li><a href="#services" class="hover:text-yellow-400 transition-colors duration-300">خدمات</a></li>
+                <li><a href="#why-us" class="hover:text-yellow-400 transition-colors duration-300">چرا ما؟</a></li>
+                <li><a href="#legal-glossary" class="hover:text-yellow-400 transition-colors duration-300">واژه‌نامه حقوقی</a></li>
+                <li><a href="#blog" class="hover:text-yellow-400 transition-colors duration-300">مقالات</a></li>
+                <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300">تماس با ما</a></li>
+                <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">سوالات متداول</a></li>
+            </ul>
+            <div class="flex justify-center space-x-8 mb-10">
+                <a href="#" target="_blank" title="لینکدین" class="text-gray-500 hover:text-yellow-400 text-4xl transition-colors duration-300 transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="اینستاگرام" class="text-gray-500 hover:text-yellow-400 text-4xl transition-colors duration-300 transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="توییتر" class="text-gray-500 hover:text-yellow-400 text-4xl transition-colors duration-300 transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-base mb-3">&copy; 2025 وکیل امیرحسین بای. تمامی حقوق محفوظ است.</p>
+            <p class="text-base mb-3">فعالیت در استان گلستان - گرگان</p>
+            <p class="text-base">طراحی و توسعه توسط Gemini با هوش مصنوعی</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const legalTermInput = document.getElementById('legalTermInput');
+            const explainTermBtn = document.getElementById('explainTermBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const legalTermResult = document.getElementById('legalTermResult');
+
+            explainTermBtn.addEventListener('click', async () => {
+                const term = legalTermInput.value.trim();
+                if (!term) {
+                    legalTermResult.innerHTML = '<p class="text-red-600">لطفاً یک اصطلاح حقوقی وارد کنید.</p>';
+                    legalTermResult.classList.remove('hidden');
+                    return;
+                }
+
+                loadingIndicator.classList.remove('hidden');
+                legalTermResult.classList.add('hidden');
+                legalTermResult.innerHTML = ''; // Clear previous results
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `اصطلاح حقوقی "${term}" را به زبان فارسی و به صورت ساده و مختصر برای عموم مردم توضیح دهید. توضیح باید حداکثر در 3-4 خط باشد و از اصطلاحات پیچیده حقوقی پرهیز شود.`;
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        legalTermResult.innerHTML = `<p>${text}</p>`;
+                    } else {
+                        legalTermResult.innerHTML = '<p class="text-red-600">متاسفانه توضیحی یافت نشد. لطفاً دوباره تلاش کنید یا اصطلاح دیگری را امتحان کنید.</p>';
+                    }
+                } catch (error) {
+                    console.error('Error fetching legal term explanation:', error);
+                    legalTermResult.innerHTML = '<p class="text-red-600">خطا در دریافت اطلاعات. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</p>';
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    legalTermResult.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
