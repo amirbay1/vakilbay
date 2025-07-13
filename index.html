@@ -384,10 +384,11 @@
 
                 try {
                     let chatHistory = [];
-                    const prompt = `اصطلاح حقوقی "${term}" را به زبان فارسی و به صورت ساده و مختصر برای عموم مردم توضیح دهید. توضیح باید حداکثر در 3-4 خط باشد و از اصطلاحات پیچیده حقوقی پرهیز شود.`;
+                    // Changed prompt to be more direct and less conversational for API
+                    const prompt = `توضیح ساده و مختصر (حداکثر 3-4 خط) اصطلاح حقوقی "${term}" به زبان فارسی برای عموم مردم، بدون استفاده از اصطلاحات پیچیده حقوقی:`;
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiKey = ""; // Canvas environment should inject the API key here
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -395,6 +396,14 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
+
+                    // Check if the HTTP response itself was successful
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('API Error Response:', errorData); // Log the full error from API
+                        legalTermResult.innerHTML = `<p class="text-red-600">خطا در ارتباط با هوش مصنوعی: ${errorData.error ? errorData.error.message : 'خطای نامشخص'}. لطفاً دوباره تلاش کنید.</p>`;
+                        return; // Exit if response is not OK
+                    }
 
                     const result = await response.json();
 
@@ -404,11 +413,14 @@
                         const text = result.candidates[0].content.parts[0].text;
                         legalTermResult.innerHTML = `<p>${text}</p>`;
                     } else {
-                        legalTermResult.innerHTML = '<p class="text-red-600">متاسفانه توضیحی یافت نشد. لطفاً دوباره تلاش کنید یا اصطلاح دیگری را امتحان کنید.</p>';
+                        // This block handles cases where the API call was successful (response.ok)
+                        // but the structure of the result is not as expected (e.g., no candidates)
+                        console.warn('Unexpected API response structure or no candidates:', result);
+                        legalTermResult.innerHTML = '<p class="text-red-600">متاسفانه توضیحی یافت نشد یا ساختار پاسخ غیرمنتظره بود. لطفاً دوباره تلاش کنید یا اصطلاح دیگری را امتحان کنید.</p>';
                     }
                 } catch (error) {
-                    console.error('Error fetching legal term explanation:', error);
-                    legalTermResult.innerHTML = '<p class="text-red-600">خطا در دریافت اطلاعات. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</p>';
+                    console.error('Network or unexpected error during fetch:', error); // Log network errors
+                    legalTermResult.innerHTML = '<p class="text-red-600">خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.</p>';
                 } finally {
                     loadingIndicator.classList.add('hidden');
                     legalTermResult.classList.remove('hidden');
