@@ -1,0 +1,16 @@
+User-agent: *
+Disallow: /PHPMailer/
+Disallow: /Eror/
+Disallow: /img/
+Disallow: /send_smtp_email.php
+Disallow: /nazarie.xml
+Disallow: /blog/editor.php
+Disallow: /sitemap_generator.php
+Disallow: /google97c095ae29ed38e7.html
+Disallow: /favicon.ico
+Disallow: /css/
+Disallow: /fonts/
+
+
+
+Sitemap: http://bayvakil.ir/sitemap.xml

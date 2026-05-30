@@ -1,0 +1,16 @@
+{
+  "name": "وکیل امیرحسین بای",
+  "short_name": "وکیل بای",
+  "description": "وکیل پایه یک دادگستری در گنبد کاووس، مشاوره حقوقی، کیفری و خانواده.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#004085",
+  "icons": [
+   {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
