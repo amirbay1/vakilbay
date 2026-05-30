@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- === تغییرات PWA - شروع === -->
+  <title>محاسبه‌گر حق‌الوکاله</title>
+  <meta name="theme-color" content="#1e40af"/>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+  <!-- === تغییرات PWA - پایان === -->
+  <link rel="stylesheet" href="../css/style.css">
+<link rel="canonical" href="" id="dynamic-canonical">
+
+<script>
+    // ساخت کنونیکال به صورت خودکار با جاوا اسکریپت
+    var canonicalLink = document.getElementById("dynamic-canonical");
+    canonicalLink.href = window.location.href.split('?')[0]; // آدرس تمیز بدون پارامترهای اضافی
+</script>
+
+   <link rel="preload" href="/fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+
+<style>
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn.woff2') format('woff2-variations'),
+       url('/fonts/Vazirmatn.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* فونت پیش‌فرض برای کل سایت */
+body {
+  font-family: 'Vazirmatn', sans-serif;
+}
+</style>
+
+</head>
+<body class="bg-gray-50 p-4 md:p-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl md:text-3xl font-bold text-primary">محاسبه‌گر حق‌الوکاله وکلا</h1>
+      <p class="text-gray-600 mt-2">مطابق آیین‌نامه تعرفه (مواد ۹، ۲۱، ۲۵، ۲۹)</p>
+    </div>
+
+    <!-- فرم ورودی -->
+    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+      <div class="mb-5">
+        <label class="block text-gray-700 mb-2 font-medium">بهای خواسته (ریال)</label>
+        <input
+          type="text"
+          id="amount"
+          inputmode="numeric"
+          class="w-full p-4 text-right text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+          placeholder="مثلاً: 1250000000"
+          oninput="handleInput(this)"
+        />
+        <div class="mt-3 space-y-1 min-h-[70px]">
+          <div id="display-rial" class="number-display text-gray-800"></div>
+          <div id="display-toman" class="number-display text-gray-700"></div>
+          <div id="display-toman-words" class="words-display"></div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2 font-medium">وضعیت حکم</label>
+        <div class="space-y-2">
+          <label class="flex items-center">
+            <input type="radio" name="verdict" value="final" class="ml-2" checked />
+            <span>قطعی از حیث بهای خواسته (۱۰٪)</span>
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="verdict" value="not-final" class="ml-2" />
+            <span>غیرقطعی (طبق ماده ۹)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <button onclick="calculate()" class="px-6 py-3 bg-primary hover:bg-blue-800 text-white font-medium rounded-lg transition shadow-md">
+          محاسبه کامل حق‌الوکاله
+        </button>
+      </div>
+    </div>
+
+    <!-- دو خلاصه کلی -->
+    <div id="comparison" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <!-- بدون اجرایی -->
+      <div class="bg-green-50 border border-green-200 rounded-xl p-5">
+        <h3 class="text-lg font-bold text-success mb-4 text-center">🟢 بدون مرحله اجرایی</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between"><span>حق‌الوکاله کل:</span> <span id="total-fee-no-exec" class="font-semibold"></span></div>
+          <div class="flex justify-between"><span>کل سهم مرکز:</span> <span id="total-center-no-exec" class="font-semibold text-red-600"></span></div>
+          <div class="flex justify-between"><span>کل تمبر:</span> <span id="total-stamp-no-exec" class="font-semibold text-amber-600"></span></div>
+          <div class="flex justify-between pt-2 border-t border-gray-300">
+            <span class="font-bold text-gray-800">خالص پرداختی:</span>
+            <span id="total-net-no-exec" class="font-bold text-green-800"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- با اجرایی -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5">
+        <h3 class="text-lg font-bold text-info mb-4 text-center">🔵 با مرحله اجرایی</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between"><span>حق‌الوکاله کل:</span> <span id="total-fee-full" class="font-semibold"></span></div>
+          <div class="flex justify-between"><span>کل سهم مرکز:</span> <span id="total-center-full" class="font-semibold text-red-600"></span></div>
+          <div class="flex justify-between"><span>کل تمبر:</span> <span id="total-stamp-full" class="font-semibold text-amber-600"></span></div>
+          <div class="flex justify-between pt-2 border-t border-gray-300">
+            <span class="font-bold text-gray-800">خالص پرداختی:</span>
+            <span id="total-net-full" class="font-bold text-blue-800"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- جزئیات مراحل (همیشه با اجرایی) -->
+    <div id="details" class="hidden bg-white rounded-xl shadow-md p-6">
+     <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">جزئیات مراحل</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- بدوی -->
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+          <h4 class="font-bold text-primary mb-3">مرحله بدوی (۶۰٪)</h4>
+          <div class="text-sm space-y-2">
+            <div class="flex justify-between"><span>حق‌الوکاله:</span> <span id="fee-first"></span></div>
+            <div class="flex justify-between"><span>سهم مرکز (۵٪):</span> <span id="center-first" class="text-red-600"></span></div>
+            <div class="flex justify-between"><span>تمبر (۵٪):</span> <span id="stamp-first" class="text-amber-600"></span></div>
+            <div class="flex justify-between pt-2 border-t border-gray-200">
+              <span class="font-medium">خالص پرداختی:</span>
+              <span id="net-first" class="font-bold text-blue-800"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- تجدیدنظر -->
+        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+          <h4 class="font-bold text-purple-700 mb-3">تجدیدنظر (۴۰٪)</h4>
+          <div class="text-sm space-y-2">
+            <div class="flex justify-between"><span>حق‌الوکاله:</span> <span id="fee-appeal"></span></div>
+            <div class="flex justify-between"><span>سهم مرکز (۵٪):</span> <span id="center-appeal" class="text-red-600"></span></div>
+            <div class="flex justify-between"><span>تمبر (۵٪):</span> <span id="stamp-appeal" class="text-amber-600"></span></div>
+            <div class="flex justify-between pt-2 border-t border-gray-200">
+              <span class="font-medium">خالص پرداختی:</span>
+              <span id="net-appeal" class="font-bold text-purple-800"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- اجرایی -->
+        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+          <h4 class="font-bold text-amber-700 mb-3">اجرایی (ماده ۲۵)</h4>
+          <div class="text-sm space-y-2">
+            <div class="flex justify-between"><span>حق‌الوکاله:</span> <span id="fee-execution"></span></div>
+            <div class="flex justify-between"><span>سهم مرکز (۵٪):</span> <span id="center-execution" class="text-red-600"></span></div>
+            <div class="flex justify-between"><span>تمبر (۵٪):</span> <span id="stamp-execution" class="text-amber-600"></span></div>
+            <div class="flex justify-between pt-2 border-t border-gray-200">
+              <span class="font-medium">خالص پرداختی:</span>
+              <span id="net-execution" class="font-bold text-amber-800"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === JS اصلی شما بدون تغییر ===
+    let rawAmount = '';
+    // ... (بقیه کدهای جاوااسکریپت شما بدون هیچ تغییری اینجا قرار می‌گیرد) ...
+    function handleInput(input) {
+      const value = input.value.replace(/\D/g, '');
+      rawAmount = value;
+      updateDisplays(value);
+    }
+
+    function numberToWords(num) {
+      if (num === 0) return 'صفر';
+      const ones = ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'];
+      const teens = ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'];
+      const tens = ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'];
+      const hundreds = ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'];
+      const scales = ['', ' هزار', ' میلیون', ' میلیارد'];
+
+      if (num < 0) return 'منفی ' + numberToWords(-num);
+      if (num < 10) return ones[num];
+      if (num < 20) return teens[num - 10];
+      if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? ' و ' + ones[num % 10] : '');
+      if (num < 1000) return hundreds[Math.floor(num / 100)] + (num % 100 !== 0 ? ' و ' + numberToWords(num % 100) : '');
+
+      let scaleIndex = 0;
+      let n = num;
+      while (n >= 1000) {
+        n = Math.floor(n / 1000);
+        scaleIndex++;
+      }
+      const divisor = Math.pow(1000, scaleIndex);
+      const scaleValue = Math.floor(num / divisor);
+      const remainder = num % divisor;
+      let words = numberToWords(scaleValue) + scales[scaleIndex];
+      if (remainder > 0) words += ' و ' + numberToWords(remainder);
+      return words;
+    }
+
+    function updateDisplays(digits) {
+      const rialEl = document.getElementById('display-rial');
+      const tomanEl = document.getElementById('display-toman');
+      const wordsEl = document.getElementById('display-toman-words');
+
+      if (!digits || digits === '') {
+        rialEl.textContent = '';
+        tomanEl.textContent = '';
+        wordsEl.textContent = '';
+        return;
+      }
+
+      const num = parseInt(digits, 10);
+      if (isNaN(num)) return;
+
+      const rialFormatted = num.toLocaleString('fa-IR');
+      const toman = Math.floor(num / 10);
+      const tomanFormatted = toman.toLocaleString('fa-IR');
+
+      rialEl.textContent = `${rialFormatted} ریال`;
+      tomanEl.textContent = `${tomanFormatted} تومان`;
+      wordsEl.textContent = `(${numberToWords(toman)} تومان)`;
+    }
+
+    function calculate() {
+      if (!rawAmount || rawAmount === '') {
+        alert('لطفاً مبلغی وارد کنید.');
+        return;
+      }
+
+      const amount = parseFloat(rawAmount);
+      if (amount <= 0) {
+        alert('مبلغ باید بزرگ‌تر از صفر باشد.');
+        return;
+      }
+
+      const verdict = document.querySelector('input[name="verdict"]:checked').value;
+
+      let litigationFee = 0;
+      if (verdict === 'final') {
+        litigationFee = amount * 0.10;
+      } else {
+        if (amount <= 500_000_000) {
+          litigationFee = amount * 0.08;
+        } else if (amount <= 2_000_000_000) {
+          litigationFee = 500_000_000 * 0.08 + (amount - 500_000_000) * 0.07;
+        } else if (amount <= 10_000_000_000) {
+          litigationFee = 500_000_000 * 0.08 + 1_500_000_000 * 0.07 + (amount - 2_000_000_000) * 0.05;
+        } else if (amount <= 30_000_000_000) {
+          litigationFee = 500_000_000 * 0.08 + 1_500_000_000 * 0.07 + 8_000_000_000 * 0.05 +
+                     (amount - 10_000_000_000) * 0.04;
+        } else {
+          litigationFee = 500_000_000 * 0.08 + 1_500_000_000 * 0.07 + 8_000_000_000 * 0.05 +
+                     20_000_000_000 * 0.04 + (amount - 30_000_000_000) * 0.03;
+        }
+      }
+
+      const firstFee = litigationFee * 0.6;
+      const appealFee = litigationFee * 0.4;
+      const centerFirst = firstFee * 0.05;
+      const stampFirst = firstFee * 0.05;
+      const netFirst = firstFee - centerFirst - stampFirst;
+      const centerAppeal = appealFee * 0.05;
+      const stampAppeal = appealFee * 0.05;
+      const netAppeal = appealFee - centerAppeal - stampAppeal;
+      const executionFee = Math.max(4_000_000, amount * 0.02);
+      const centerExecution = executionFee * 0.05;
+      const stampExecution = executionFee * 0.05;
+      const netExecution = executionFee - centerExecution - stampExecution;
+      const totalFeeNoExec = litigationFee;
+      const totalCenterNoExec = centerFirst + centerAppeal;
+      const totalStampNoExec = stampFirst + stampAppeal;
+      const totalNetNoExec = netFirst + netAppeal;
+      const totalFeeFull = litigationFee + executionFee;
+      const totalCenterFull = totalCenterNoExec + centerExecution;
+      const totalStampFull = totalStampNoExec + stampExecution;
+      const totalNetFull = totalNetNoExec + netExecution;
+      const f = (num) => new Intl.NumberFormat('fa-IR').format(Math.round(num)) + ' ریال';
+      document.getElementById('total-fee-no-exec').textContent = f(totalFeeNoExec);
+      document.getElementById('total-center-no-exec').textContent = f(totalCenterNoExec);
+      document.getElementById('total-stamp-no-exec').textContent = f(totalStampNoExec);
+      document.getElementById('total-net-no-exec').textContent = f(totalNetNoExec);
+      document.getElementById('total-fee-full').textContent = f(totalFeeFull);
+      document.getElementById('total-center-full').textContent = f(totalCenterFull);
+      document.getElementById('total-stamp-full').textContent = f(totalStampFull);
+      document.getElementById('total-net-full').textContent = f(totalNetFull);
+      document.getElementById('fee-first').textContent = f(firstFee);
+      document.getElementById('center-first').textContent = f(centerFirst);
+      document.getElementById('stamp-first').textContent = f(stampFirst);
+      document.getElementById('net-first').textContent = f(netFirst);
+      document.getElementById('fee-appeal').textContent = f(appealFee);
+      document.getElementById('center-appeal').textContent = f(centerAppeal);
+      document.getElementById('stamp-appeal').textContent = f(stampAppeal);
+      document.getElementById('net-appeal').textContent = f(netAppeal);
+      document.getElementById('fee-execution').textContent = f(executionFee);
+      document.getElementById('center-execution').textContent = f(centerExecution);
+      document.getElementById('stamp-execution').textContent = f(stampExecution);
+      document.getElementById('net-execution').textContent = f(netExecution);
+      document.getElementById('comparison').classList.remove('hidden');
+      document.getElementById('details').classList.remove('hidden');
+    }
+  </script>
+  
+  <!-- === تغییرات PWA - ثبت Service Worker === -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+  
+</body>
+</html>
