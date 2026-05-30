@@ -1,0 +1,508 @@
+<?php
+/*
+ * Ultimate Legal Calculator v8 (Strict Logic) - PWA Version
+ * Logic: 
+ * 1. Date1 = Start + Duration + Loops if Holiday (Thursday/Friday/API).
+ * 2. Date2 = Date1 + 1 Day (PURE MATH, NO CHECKS).
+ */
+
+// ---------------------------------------------------------
+// 1. توابع کمکی
+// ---------------------------------------------------------
+
+function faToEn($string) {
+    return strtr($string, array('۰'=>'0', '۱'=>'1', '۲'=>'2', '۳'=>'3', '۴'=>'4', '۵'=>'5', '۶'=>'6', '۷'=>'7', '۸'=>'8', '۹'=>'9'));
+}
+
+function gregorian_to_jalali($gy, $gm, $gd, $mod = '') {
+    $g_d_m = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334);
+    if ($gy > 1600) { $jy = 979; $gy -= 1600; } else { $jy = 0; $gy -= 621; }
+    $gy2 = ($gm > 2) ? ($gy + 1) : $gy;
+    $days = (365 * $gy) + ((int)(($gy2 + 3) / 4)) - ((int)(($gy2 + 99) / 100)) + ((int)(($gy2 + 399) / 400)) - 80 + $gd + $g_d_m[$gm - 1];
+    $jy += 33 * ((int)($days / 12053));
+    $days %= 12053;
+    $jy += 4 * ((int)($days / 1461));
+    $days %= 1461;
+    if ($days > 365) { $jy += (int)(($days - 1) / 365); $days = ($days - 1) % 365; }
+    $jm = ($days < 186) ? 1 + (int)($days / 31) : 7 + (int)(($days - 186) / 30);
+    $jd = 1 + (($days < 186) ? ($days % 31) : (($days - 186) % 30));
+    return ($mod == '') ? array($jy, $jm, $jd) : $jy . $mod . $jm . $mod . $jd;
+}
+
+function jalali_to_gregorian($jy, $jm, $jd, $mod = '') {
+    if ($jy > 979) { $gy = 1600; $jy -= 979; } else { $gy = 621; $jy -= 0; }
+    $days = (365 * $jy) + (((int)($jy / 33)) * 8) + ((int)((($jy % 33) + 3) / 4)) + 78 + $jd + (($jm < 7) ? ($jm - 1) * 31 : (($jm - 7) * 30) + 186);
+    $gy += 400 * ((int)($days / 146097));
+    $days %= 146097;
+    if ($days > 36524) { $gy += 100 * ((int)(--$days / 36524)); $days %= 36524; if ($days >= 365) $days++; }
+    $gy += 4 * ((int)($days / 1461));
+    $days %= 1461;
+    if ($days > 365) { $gy += (int)(($days - 1) / 365); $days = ($days - 1) % 365; }
+    $gd = $days + 1;
+    $gm = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if (($gy % 4 == 0 && $gy % 100 != 0) || ($gy % 400 == 0)) $gm[2] = 29;
+    for ($gmIdx = 0; $gmIdx <= 12; $gmIdx++) { $v = $gm[$gmIdx]; if ($gd <= $v) break; $gd -= $v; }
+    return ($mod == '') ? array($gy, $gmIdx, $gd) : $gy . $mod . $gmIdx . $mod . $gd;
+}
+
+function getDayName($dayIndex) {
+    $days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
+    return $days[$dayIndex];
+}
+
+// ---------------------------------------------------------
+// 2. پردازش فرم
+// ---------------------------------------------------------
+
+$resultData = null;
+$error = null;
+$startDayName = "";
+$thursdayOffChecked = true; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $thursdayOffChecked = isset($_POST['thursday_off']);
+    
+    $jyInput = intval(faToEn($_POST['year']));
+    $jmInput = intval(faToEn($_POST['month']));
+    $jdInput = intval(faToEn($_POST['day']));
+    $duration = intval(faToEn($_POST['duration']));
+
+    if ($jyInput && $jmInput && $jdInput && $duration) {
+        
+        // تبدیل تاریخ ابلاغ
+        $gDateArr = jalali_to_gregorian($jyInput, $jmInput, $jdInput);
+        $startDateObj = new DateTime("$gDateArr[0]-$gDateArr[1]-$gDateArr[2]");
+        $startDateObj->setTime(0,0,0);
+        $startDayName = getDayName($startDateObj->format('w'));
+        
+        // محاسبه تاریخ پایه (ابلاغ + مهلت)
+        $date = clone $startDateObj;
+        $date->modify("+$duration days");
+
+        // --- شروع حلقه بررسی تعطیلات (فقط برای تاریخ مهلت) ---
+        $foundBusinessDay = false;
+        $reasons = []; 
+        $loopSafety = 0;
+
+        while (!$foundBusinessDay && $loopSafety < 30) {
+            $loopSafety++;
+            
+            // بازنشانی متغیرها در هر دور حلقه (بسیار مهم برای رفع باگ)
+            $isTodayHoliday = false;
+            $todayReason = "";
+            
+            // اطلاعات روز جاری
+            $currGy = $date->format('Y'); 
+            $currGm = $date->format('m'); 
+            $currGd = $date->format('d');
+            $currJ = gregorian_to_jalali($currGy, $currGm, $currGd);
+            $currJStr = "$currJ[0]/$currJ[1]/$currJ[2]";
+            $dayOfWeek = $date->format('w'); // 0=Sun ... 5=Fri
+            
+            // 1. بررسی پنج‌شنبه
+            if ($dayOfWeek == 4 && $thursdayOffChecked) {
+                $isTodayHoliday = true;
+                $todayReason = "پنج‌شنبه";
+            }
+            // 2. بررسی جمعه
+            elseif ($dayOfWeek == 5) {
+                $isTodayHoliday = true;
+                $todayReason = "جمعه";
+            }
+            // 3. بررسی API (تعطیلات رسمی)
+            else {
+                $checkY = $currJ[0];
+                $checkM = str_pad($currJ[1], 2, '0', STR_PAD_LEFT);
+                $checkD = str_pad($currJ[2], 2, '0', STR_PAD_LEFT);
+                
+                $apiUrl = "https://holidayapi.ir/jalali/{$checkY}/{$checkM}/{$checkD}";
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $apiUrl);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                if ($response) {
+                    $data = json_decode($response, true);
+                    if (isset($data['is_holiday']) && $data['is_holiday'] == true) {
+                        $isTodayHoliday = true;
+                        $desc = "";
+                        foreach($data['events'] as $ev) { if($ev['is_holiday']) $desc .= $ev['description'] . " "; }
+                        $todayReason = trim($desc);
+                        if(empty($todayReason)) $todayReason = "تعطیل رسمی";
+                    }
+                }
+            }
+
+            if ($isTodayHoliday) {
+                $reasons[] = "$currJStr ($todayReason)";
+                $date->modify("+1 day"); // برو روز بعد
+            } else {
+                $foundBusinessDay = true; // روز کاری پیدا شد
+            }
+        }
+
+        // --- تاریخ 1: پایان مهلت (Date 1) ---
+        $date1 = clone $date;
+        $d1J = gregorian_to_jalali($date1->format('Y'), $date1->format('m'), $date1->format('d'));
+        $date1Str = "$d1J[0]/$d1J[1]/$d1J[2]";
+        $date1Day = getDayName($date1->format('w'));
+
+        // --- تاریخ 2: پایان مهلت با روز اقدام (Date 1 + 1 Day) ---
+        // هیچ بررسی تعطیلی روی این انجام نمی‌شود. فقط ریاضی ساده.
+        $date2 = clone $date1;
+        $date2->modify("+1 day");
+        
+        $d2J = gregorian_to_jalali($date2->format('Y'), $date2->format('m'), $date2->format('d'));
+        $date2Str = "$d2J[0]/$d2J[1]/$d2J[2]";
+        $date2Day = getDayName($date2->format('w'));
+
+        // توضیحات
+        $explanation = "";
+        if (count($reasons) > 0) {
+            $explanation = "پایان مهلت اولیه مصادف بود با:<br><span class='block mt-2 text-red-600 bg-red-50 p-2 rounded text-xs font-bold leading-6'>" . implode(' ⬅ ', $reasons) . "</span><br>لذا مهلت تا اولین روز کاری بعد تمدید شد.";
+        } else {
+            $explanation = "پایان مهلت مصادف با روز کاری عادی بود.";
+        }
+
+        // وضعیت زمانی
+        $today = new DateTime();
+        $today->setTime(0,0,0);
+        $startTs = $startDateObj->getTimestamp();
+        $endTs = $date1->getTimestamp();
+        $todayTs = $today->getTimestamp();
+
+        $statusMsg = "";
+        $badgeClass = "";
+
+        if ($todayTs < $startTs) {
+            $diff = $today->diff($startDateObj);
+            $statusMsg = "هنوز شروع نشده (" . $diff->days . " روز مانده)";
+            $badgeClass = "bg-gray-100 text-gray-600 border-gray-200";
+        } elseif ($todayTs > $endTs) {
+            $diff = $date1->diff($today);
+            $statusMsg = "مهلت تمام شده (" . $diff->days . " روز پیش)";
+            $badgeClass = "bg-red-50 text-red-700 border-red-200";
+        } else {
+            $diff = $today->diff($date1);
+            $rem = $diff->days;
+            if ($rem == 0) {
+                $statusMsg = "⚠️ امروز آخرین مهلت است";
+                $badgeClass = "bg-orange-50 text-orange-700 border-orange-200 animate-pulse";
+            } else {
+                $statusMsg = "$rem روز باقی مانده";
+                $badgeClass = "bg-emerald-50 text-emerald-700 border-emerald-200";
+            }
+        }
+
+        $resultData = [
+            'date1' => $date1Str,
+            'day1' => $date1Day,
+            'date2' => $date2Str,
+            'day2' => $date2Day,
+            'explanation' => $explanation,
+            'status_msg' => $statusMsg,
+            'badge_class' => $badgeClass,
+            'start_str' => "$jyInput/$jmInput/$jdInput"
+        ];
+    } else {
+        $error = "لطفاً تمام ورودی‌ها را کامل کنید.";
+    }
+}
+
+// PWA Manifest
+if (isset($_GET['manifest'])) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        "name" => "محاسبه‌گر مواعد قانونی",
+        "short_name" => "مواعد قانونی",
+        "start_url" => ".",
+        "display" => "standalone",
+        "background_color" => "#3b82f6",
+        "theme_color" => "#3b82f6",
+        "icons" => [
+            [
+                "src" => "https://bayvakil.ir/img/mavaed.webp",
+                "sizes" => "192x192",
+                "type" => "image/webp"
+            ]
+        ]
+    ]);
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه‌گر مواعد قانونی | وکیل امیرحسین بای</title>
+    <meta name="description" content="محاسبه دقیق مواعد قانونی، مهلت تجدیدنظر، واخواهی و مواعد آیین دادرسی مدنی و کیفری. ابزار آنلاین محاسبه مهلت دادگاه.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3b82f6"/>
+    <link rel="manifest" href="?manifest=1">
+    <link rel="apple-touch-icon" href="https://bayvakil.ir/img/mavaed.webp">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="محاسبه مواعد, مهلت تجدیدنظر, مهلت واخواهی, محاسبه مهلت دادگاه, وکیل امیرحسین بای, محاسبه مواعد حقوقی">
+    <meta name="author" content="وکیل امیرحسین بای">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bayvakil.ir/mavaed.php">
+    <meta property="og:title" content="محاسبه مواعد قضایی - وکیل امیرحسین بای">
+    <meta property="og:description" content="ابزار محاسبه مهلت‌های قانونی و قضایی">
+    <meta property="og:image" content="https://bayvakil.ir/img/logo.webp">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:site_name" content="وکیل امیرحسین بای">
+    
+    <link fetchpriority="high" rel="icon" sizes="any" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/mavaed.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="../img/mavaed.webp">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+                    colors: { brand: { 500: '#3b82f6', 600: '#2563eb' } }
+                }
+            }
+        }
+        
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    <style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #3b82f6;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #3b82f6;
+        }
+        
+        /* PWA Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        .install-prompt.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-[#f8f9fa] font-sans min-h-screen flex flex-col items-center py-10 px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-black text-gray-800 mb-2">محاسبه‌گر مواعد قانونی</h1>
+        <p class="text-gray-500 text-sm">محاسبه دقیق مهلت و روز اقدام (با احتساب پنج‌شنبه‌ها)</p>
+    </div>
+
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- ستون ورودی -->
+        <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl shadow-lg shadow-gray-200/50 p-6 border border-white sticky top-6">
+                <div class="flex items-center gap-2 mb-6 border-b pb-4">
+                    <span class="w-1 h-6 bg-blue-600 rounded-full"></span>
+                    <h2 class="text-xl font-bold text-gray-700">ورود اطلاعات</h2>
+                </div>
+
+                <?php if($error): ?>
+                    <div class="bg-red-50 text-red-600 p-3 rounded-xl text-sm mb-4 border border-red-100">
+                        <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
+
+                <form method="POST" class="space-y-6">
+                    <div>
+                        <div class="text-sm font-bold text-gray-600 mb-2">تاریخ ابلاغ</div>
+                        <div class="grid grid-cols-4 gap-3">
+                            <div class="col-span-1">
+                                <label class="text-[10px] text-gray-400 block mb-1 text-center">روز</label>
+                                <input type="number" name="day" placeholder="01" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-center font-bold text-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-300" required value="<?php echo $_POST['day'] ?? ''; ?>">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="text-[10px] text-gray-400 block mb-1 text-center">ماه</label>
+                                <input type="number" name="month" placeholder="06" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-center font-bold text-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-300" required value="<?php echo $_POST['month'] ?? ''; ?>">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="text-[10px] text-gray-400 block mb-1 text-center">سال</label>
+                                <input type="number" name="year" placeholder="1403" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-center font-bold text-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-300" required value="<?php echo $_POST['year'] ?? '1403'; ?>">
+                            </div>
+                        </div>
+                        <?php if($startDayName): ?>
+                            <div class="text-center mt-2 text-xs font-bold text-brand-600 bg-brand-50 py-1.5 rounded-lg">
+                                روز ابلاغ: <?php echo $startDayName; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-bold text-gray-600 mb-2 block">مدت زمان (روز)</label>
+                        <div class="relative">
+                            <input type="number" name="duration" placeholder="مثلا 20" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:ring-2 focus:ring-blue-500 outline-none transition text-2xl font-bold text-gray-700 placeholder-gray-300 pl-16" required value="<?php echo $_POST['duration'] ?? ''; ?>">
+                            <span class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm font-bold">روز</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <span class="text-sm font-bold text-gray-600">احتساب پنج‌شنبه به عنوان تعطیل</span>
+                        <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="thursday_off" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 <?php echo $thursdayOffChecked ? 'right-0 border-blue-500' : 'right-6 border-gray-300'; ?>" <?php echo $thursdayOffChecked ? 'checked' : ''; ?>/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer transition-colors duration-300 <?php echo $thursdayOffChecked ? 'bg-blue-500' : 'bg-gray-300'; ?>"></label>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button type="submit" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/20 transition-all transform active:scale-[0.98] text-lg">
+                            محاسبه کن
+                        </button>
+                        <a href="index.php" class="bg-gray-100 hover:bg-gray-200 text-gray-500 px-5 rounded-xl flex items-center justify-center transition-colors" title="شروع مجدد">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ستون خروجی -->
+        <div class="lg:col-span-7 space-y-6">
+            
+            <?php if($resultData): ?>
+            
+            <!-- کارت‌های نتیجه -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white p-6 rounded-3xl shadow-md border-b-4 border-emerald-500 relative overflow-hidden group hover:shadow-lg transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.04]">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </div>
+                    <h3 class="text-emerald-600 text-xs font-bold uppercase tracking-wider mb-2">پایان مهلت</h3>
+                    <div class="text-4xl font-black text-gray-800 tracking-tight"><?php echo $resultData['date1']; ?></div>
+                    <div class="mt-2 font-bold text-gray-400 text-sm"><?php echo $resultData['day1']; ?></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl shadow-md border-b-4 border-indigo-500 relative overflow-hidden group hover:shadow-lg transition">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.04]">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h3 class="text-indigo-600 text-xs font-bold uppercase tracking-wider mb-2">پایان مهلت با روز اقدام</h3>
+                    <div class="text-4xl font-black text-gray-800 tracking-tight"><?php echo $resultData['date2']; ?></div>
+                    <div class="mt-2 font-bold text-gray-400 text-sm"><?php echo $resultData['day2']; ?></div>
+                </div>
+            </div>
+
+            <!-- باکس وضعیت -->
+            <div class="bg-white rounded-3xl p-8 shadow-md border border-gray-50 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-50"></div>
+                
+                <span class="text-xs text-gray-400 font-bold mb-4 uppercase tracking-wider">وضعیت زمانی پرونده</span>
+                
+                <div class="px-8 py-4 rounded-2xl border-2 text-3xl font-black shadow-sm <?php echo $resultData['badge_class']; ?>">
+                    <?php echo $resultData['status_msg']; ?>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-8 mt-6 text-xs text-gray-400 font-bold bg-gray-50 px-4 py-2 rounded-full">
+                    <span>تاریخ ابلاغ: <?php echo $resultData['start_str']; ?></span>
+                    <span class="hidden sm:inline">•</span>
+                    <span>مهلت: <?php echo $resultData['date1']; ?></span>
+                </div>
+            </div>
+
+            <!-- توضیحات -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-50 flex gap-4 items-start">
+                <div class="bg-blue-50 p-3 rounded-full text-blue-500 shrink-0">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div class="pt-1">
+                    <h4 class="font-bold text-gray-800 text-sm mb-1">گزارش محاسبه</h4>
+                    <p class="text-sm text-gray-600 leading-7 font-medium">
+                        <?php echo $resultData['explanation']; ?>
+                    </p>
+                </div>
+            </div>
+
+            <?php else: ?>
+                <!-- Empty State -->
+                <div class="bg-white rounded-3xl border-2 border-dashed border-gray-200 h-full min-h-[400px] flex flex-col items-center justify-center text-center p-8">
+                    <div class="bg-gray-50 p-6 rounded-full mb-6">
+                        <svg class="w-16 h-16 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">محاسبه‌گر آماده است</h3>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto">برای دریافت تاریخ دقیق پایان مهلت و روز اقدام، اطلاعات پرونده را در فرم روبرو وارد کنید.</p>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div id="installPrompt" class="install-prompt hidden">
+        <p class="text-sm mb-2">نصب اپلیکیشن محاسبه‌گر مواعد؟</p>
+        <div class="flex gap-2">
+            <button id="installCancel" class="flex-1 bg-gray-200 text-gray-800 py-1 px-3 rounded text-sm">لغو</button>
+            <button id="installConfirm" class="flex-1 bg-blue-600 text-white py-1 px-3 rounded text-sm">نصب</button>
+        </div>
+    </div>
+
+    <script>
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installCancel = document.getElementById('installCancel');
+        const installConfirm = document.getElementById('installConfirm');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.classList.remove('hidden');
+        });
+
+        installConfirm.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installPrompt.classList.add('hidden');
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        installCancel.addEventListener('click', () => {
+            installPrompt.classList.add('hidden');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installPrompt.classList.add('hidden');
+            deferredPrompt = null;
+        });
+    </script>
+
+</body>
+</html>
